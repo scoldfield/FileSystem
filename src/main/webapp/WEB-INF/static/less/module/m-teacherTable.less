@@ -1,0 +1,105 @@
+@import "../lib/component-function";
+@import "../lib/var";
+.m-tablewrap{
+    h2{ height:21px; line-height:21px; font-weight:normal; font-size:16px; padding:8px 0; border-top:1px solid #DDD;
+        span.spaceof{ display:inline-block; padding:0 8px; }
+    }
+
+    small{ display:inline-block; font-size:14px; padding-left:20px; }
+    .table{ width:100%; border-collapse:collapse; table-layout:fixed;
+        &.tdcenter{
+            td{ text-align:center;
+                &.tleft{ text-align:left; }
+            }
+        }
+        /* 无左右边框 */
+        &.tablenoborder{
+            td, th{ border-left:none; border-right:none; }
+        }
+    }
+    td, th{ border:1px solid #E0E0E0; font-size:14px; color:#666; font-weight:normal; padding:5px 6px; word-break:break-all; }
+    thead{ background-color:#F6F6F6;
+        td, th{ text-align:center; line-height:18px; color:#256B84 }
+    }
+    th{ background-color:#F6F6F6; }
+    tbody{
+        /*    tr:nth-of-type(2n){ background-color:#FCFFE8; }*/
+        td, th{ line-height:18px; }
+    }
+
+    a{ color:#0076A9;
+        &.general{ display:inline-block; height:16px; line-height:16px; color:#0076A9; padding:2px 4px; .boxradius(all, 3px);
+            &:hover{ color:#FFF; background-color:@global_blue; }
+        }
+        &.long{ display:inline-block; max-width:90%; height:16px; vertical-align:middle; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:16px; color:#0076A9; padding:2px 4px; .boxradius(all, 3px);
+            &:hover{ text-decoration:underline; }
+        }
+        &.gray{ padding:2px 4px; color:#999; cursor:default;
+            &:hover{ background:none; color:#999; }
+        }
+    }
+
+    p{ height:24px; line-height:24px; padding:5px 0; }
+
+    /* 多选 */
+    .checkbox-ui{ display:inline-block; width:16px; margin:0 auto; vertical-align:middle;
+        &.checkbox-ui-choseAll{ width:46px; line-height:16px; }
+    }
+
+    /* 管理商 状态标签 */
+    .tdstatus{ display:inline; padding:1px 4px 2px; .boxradius(all, 3px); color:#FFF; font-size:12px;
+        &.pending{ background-color:#639EC3; }
+        &.using,
+        &.ok{ background-color:#289053; }
+        &.stoping{ background-color:#AAA; }
+        &.unuse{ background-color:#CCC; }
+    }
+
+    /* 表格处理区 */
+    .tabledeal{ padding:30px 0;
+        .u-gbtn{ color:#FFF; margin-top:15px; }
+    }
+
+    /* */
+    .overflowContent{ width:90%; height:30px; line-height:26px;
+        p{ width:100%; height:30px; margin:0; padding:0 8px; border:1px solid transparent; line-height:27px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; word-break:break-all; text-align:left; }
+        &:hover p{ position:relative; height:auto; overflow:visible; white-space:normal; background:#FFF; border:1px solid #DDD; padding:0 8px; text-align:left; }
+    }
+
+    .simpleOverContent{ display:block; width:90%; height:30px; margin:0; padding:0 8px; line-height:27px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; word-break:break-all; }
+
+    /* 表头选项  */
+    .m-selectui{ display:inline-block;
+        .intotext{ border:none; background:none; }
+        ul.optionwarp{ border:2px solid #91C55A;
+            li{ color:#304618; text-align:center; .boxsizing();
+                &:hover{ background-color:#91C55A; }
+            }
+        }
+    }
+
+    /*  表头排序 */
+    .sortwrap{ display:inline-block; position:relative; padding:0 20px 0 10px; height:20px; line-height:20px;
+        .wd{ line-height:20px; }
+        a{ display:block; position:absolute; right:0; width:13px; height:8px; line-height:10px; &:extend(.icon-sprite-teacher-y); }
+        .ascending{ top:0; background-position:-20px -657px;
+            &:hover,
+            &.active{ background-position:-4px -657px; }
+        }
+        .descending{ bottom:0; background-position:-20px -682px;
+            &:hover,
+            &.active{ background-position:-4px -682px; }
+        }
+    }
+
+    /*  小提示标签 */
+    .s-tips{ display:inline-block; padding:2px 4px; border-radius:3px; line-height:16px; font-size:12px;
+        &.tips-gr{ background-color:#15A745; color:#FFF; }
+        &.tips-red{ background-color:#CC2F02; color:#FFF; }
+        &.tips-pink{ background-color:#BA2863; color:#FFF; }
+        &.tips-org{ background-color:#DA5000; color:#FFF; }
+        &.tips-blue{ background-color:#288CC8; color:#FFF; }
+        &.tips-gray{ background-color:#B3ABAE; color:#FFF; }
+    }
+}
+

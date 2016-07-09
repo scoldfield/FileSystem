@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd"
+	default-lazy-init="true">
+	<description>Spring公共配置 </description>
+	<!-- 为了便于开发和测试环境分别调试，将下面两个通用配置文件写到文件底部的<beans>中 -->
+	<context:property-placeholder location="classpath:system.properties" />
+	<util:properties id="dataSourceProps" location="classpath:resources.properties" />
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.cmcc.filesystem">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 开启AOP监听 只对当前配置文件有效 -->
+	<aop:aspectj-autoproxy expose-proxy="true" />
+	<bean id="myInterceptor" class="com.cmcc.filesystem.aop.AnntationAspect" />
+
+
+	<!-- 数据源 -->
+	<!--see https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_DruidDataSource%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
+		<!-- 基本属性 url、user、password -->
+		<property name="url" value="#{dataSourceProps['connection.url']}" />
+		<property name="username" value="#{dataSourceProps['connection.username']}" />
+		<property name="password" value="#{dataSourceProps['connection.password']}" />
+
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="#{dataSourceProps['druid.initialSize']}" />
+		<property name="minIdle" value="#{dataSourceProps['druid.minIdle']}" />
+		<property name="maxActive" value="#{dataSourceProps['druid.maxActive']}" />
+
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="#{dataSourceProps['druid.maxWait']}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis"
+			value="#{dataSourceProps['druid.timeBetweenEvictionRunsMillis']}" />
+
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis"
+			value="#{dataSourceProps['druid.minEvictableIdleTimeMillis']}" />
+
+		<property name="validationQuery" value="#{dataSourceProps['druid.validationQuer']}" />
+		<property name="testWhileIdle" value="#{dataSourceProps['druid.testWhileIdle']}" />
+		<property name="testOnBorrow" value="#{dataSourceProps['druid.testOnBorrow']}" />
+		<property name="testOnReturn" value="#{dataSourceProps['druid.testOnReturn']}" />
+
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。 -->
+		<property name="poolPreparedStatements"
+			value="#{dataSourceProps['druid.poolPreparedStatements']}" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="#{dataSourceProps['druid.maxPoolPreparedStatementPerConnectionSize']}" />
+
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="#{dataSourceProps['druid.filters']}" />
+
+	</bean>
+
+	<!--事务管理DataSourceTransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 使用annotation定义事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<!-- Spring iBatis SqlMapClient -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mybatis/mapper/*Mapper.xml" />
+		<property name="configLocation" value="classpath:mybatis/mybatis_config.xml" />
+	</bean>
+
+	<!-- 自动扫描mapper配置和dao映射，无需写mybatis-config.xml -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cmcc.filesystem.dao" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- 用于持有ApplicationContext,可以使用SpringUtil.getBean('xxxx')的静态方法得到spring 
+		bean对象 -->
+
+	<bean class="com.cmcc.filesystem.util.SpringUtils" />
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="104857600" />
+		<property name="maxInMemorySize" value="4096" />
+	</bean>
+
+	<import resource="classpath:spring/spring-config-cache.xml" />
+	<import resource="classpath:spring/spring-config-shiro.xml" />
+	<import resource="classpath:spring/applicationContextWebServices.xml" />
+	
+	
+	<!-- <import resource="classpath:redis/redis.xml" /> -->
+	<!-- <import resource="classpath:spring/intfBossWebServices.xml" /> -->
+
+	<!-- 开发环境 -->
+	<!-- <beans profile="production">
+		<context:property-placeholder location="classpath:system.properties" />
+		<util:properties id="dataSourceProps" location="classpath:resources.production.properties" />
+	</beans> -->
+	<!-- 测试环境 -->
+	<!-- <beans profile="test18080">
+		<context:property-placeholder location="classpath:system.properties" />
+		<util:properties id="dataSourceProps" location="classpath:resources.test18080.properties" />
+	</beans>
+	<beans profile="test28080">
+		<context:property-placeholder location="classpath:system.properties" />
+		<util:properties id="dataSourceProps" location="classpath:resources.test28080.properties" />
+	</beans>
+	<beans profile="qinghai">
+		<context:property-placeholder location="classpath:system.qinghai.properties" />
+		<util:properties id="dataSourceProps" location="classpath:resources.qinghai.properties" />
+	</beans>
+	
+	<beans profile="dev9080">
+		<context:property-placeholder location="classpath:system.properties" />
+		<util:properties id="dataSourceProps" location="classpath:resources.dev9080.properties" />
+	</beans> -->
+
+</beans>

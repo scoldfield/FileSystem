@@ -1,0 +1,23 @@
+@import "../lib/component-function";
+@chooseIptimgurl:'../../images/chooseimg.png';
+.icon-sprite-chooseIpt{ background:url(@chooseIptimgurl) 0 0 no-repeat; }
+.m-chooseIpt{
+    /* normal */
+    a{ display:inline-block; height:16px; line-height:16px; padding:2px 4px 2px 21px; margin:4px;
+        &:extend(.icon-sprite-chooseIpt); cursor:pointer; .userSelect();
+        &.all{ display:block; margin-top:8px; margin-bottom:8px; border-bottom:1px dashed #DDD; }
+    }
+    /* 多选 */
+    &.checkbox{
+        a{ background-position:-2px -3px;
+            &.figure{ background-position:-2px -26px; }
+            &.disabled{ background-position:-3px -156px; color:#CCC; cursor:default }
+        }
+    }
+    &.radio{
+        a{ background-position:0 -50px;
+            &.figure{ background-position:0 -73px; }
+            &.disabled{ background-position:0 -178px; color:#CCC; cursor:default }
+        }
+    }
+}

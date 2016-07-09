@@ -1,0 +1,61 @@
+@import "../pub/teacher_global";
+@import "../lib/component-function";
+@import "../module/m-teacherNav";
+@import "../module/m-selectui";
+@import "../plug/ymPromptTeacher";
+.g-studentDetail{ width:1055px; margin-top:15px; padding-bottom:20px; }
+.g-stDetailPart{ padding:10px 24px 24px; border:1px solid #DDD; border-top:4px solid @global_green;
+    &.dleft{ width:1020px; }
+    h2{ height:36px; line-height:20px; border-bottom:1px solid #DDD; font-weight:normal; font-size:16px }
+    .divtable{ padding:10px; border-bottom:1px solid #DDD;
+        &.nb{ border:none }
+    }
+    table{ table-layout:fixed; width:100%; }
+    td, th{ padding:7px 0; vertical-align:top }
+    th{ text-align:right; padding-right:5px; line-height:28px; }
+    /* 组件 */
+    .m-selectui{ float:left;}
+    .m-selectui-school{ width:290px;
+        .intotext{ width:276px; }
+    }
+    .m-selectui-grade,
+    .m-selectui-class{ width:150px; margin-right:10px;
+        .intotext{ width:136px; }
+    }
+
+    .m-selectui-relation{ width:87px;
+        .intotext{ width:73px; }
+    }
+
+    .m-selectui.disabled{
+        background:none;
+        .intotext{ border:none; cursor:text }
+        .trigon{ display:none; }
+    }
+
+    .u-gipt{ float:left; width:200px; }
+    .u-gipt-short{ width:75px; }
+
+    .checkbox-ui{ margin-right:20px; margin-top:5px;
+        b{ margin-top:3px; margin-right:3px; }
+        b,
+        b:after{ border-radius:12px; }
+    }
+}
+.m-formSubmitWrap{ padding:20px; margin:0px 65px 100px; border-top:1px dashed #DDD; }
+.m-selectui{
+    &.m-selectui-school{ width:271px;
+        .intotext{ width:257px; }
+        .optionwarp{ max-height:300px; }
+    }
+    &.m-selectui-grade{ width:105px;
+        .intotext{ width:91px; }
+        .optionwarp{ max-height:300px; }
+    }
+    &.m-selectui-class{ width:105px;
+        .intotext{ width:91px; }
+        .optionwarp{ max-height:300px; }
+    }
+}
+.s-alltips{ padding:5px 10px; margin-bottom:20px; border:1px solid #F90; background-color:#FFF0DD; font-size:14px; line-height:20px; }
+.tips{ height:30px; line-height:30px; padding-left:20px; float:left; color:#F30; }

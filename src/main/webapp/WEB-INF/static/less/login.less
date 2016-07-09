@@ -1,0 +1,140 @@
+@import "lib/normalize";
+@import "lib/component-function";
+@import "lib/component-animate";
+@import "lib/var";
+html, body{ height:100%; background:#FDF9EB; font-family:"\5FAE\8F6F\96C5\9ED1", Tahoma, Helvetica Neue, Helvetica, Arial, Hiragino Sans GB, Microsoft Yahei, Simhei, sans-serif }
+@topHeight:64px;
+@wrapHeight:460px;
+@wrapMinWidth:1000px;
+@ordinColor:#666;
+@footerHeight:64px;
+@formWidth:324px;
+.icon-sprite{ background:url("../images/login/login-icon-sprite.png") 9999px 9999px no-repeat; }
+.g-wrap{ width:100%; height:100%; min-height:@topHeight + @wrapHeight + @footerHeight; overflow:hidden; }
+/* login main */
+.g-main{ width:100%; height:@wrapHeight - 1px; padding-top:1px;
+    &.main-outer{ position:absolute; top:50%; }
+    &.main-inner{ position:absolute; top:-50%; }
+}
+.g-mainwrap{ width:@wrapMinWidth; height:@wrapHeight; background:url(../images/login/login-y-bg.jpg) no-repeat; }
+.g-loginwrap{ position:relative; width:@formWidth; min-height:335px; padding:1px 20px; margin:36px 0; border-radius:10px; background-color:#FFF;
+    h2{ height:36px; margin-top:25px; font-size:19px; font-weight:normal; color:@ordinColor; }
+}
+.s-logo{ display:block; float:left; margin:9px 0 0 30px; font-size:30px; color:#15A4FA;
+    img{ display:inline; vertical-align:middle; margin-right:10px; }
+}
+.m-formul{
+    &.m-formul-forget{ width:@formWidth;
+        li{
+            &.iptwrap{ width:@formWidth - 2px -  16px; padding:8px; }
+        }
+    }
+
+    li{ margin-bottom:18px;
+        .iptwrap{ position:relative; border:1px solid #CCC; padding:6px 8px;  &:extend(.icon-sprite); font-size:14px;
+            &.username{ padding:6px 8px 6px 40px; background-position:2px -47px; }
+            &.password{ padding:6px 8px 6px 40px; background-position:2px -108px; }
+            &.enterCode{ width:95px; }
+            &.focus{ border-color:#AAC2D9; box-shadow:1px 1px 2px #DEDEDE }
+            &.erro{ border-color:#E89675; }
+            &.u-erro{ height:24px; line-height:24px; color:#F30; padding:5px 0; }
+        }
+
+    }
+
+    .s-roletype{
+        a{ display:block; float:left; cursor:pointer; text-align:center;
+            b{ display:block; width:80px; height:80px; .boxradius(all, 100%); overflow:hidden; border:3px solid #FFF; }
+            img{ display:block; width:100%; }
+            &.active{
+                b{ border-color:#F00; }
+            }
+        }
+    }
+
+    .u-ipt{ width:100%; height:24px; line-height:24px; border:none; background:none; font-size:16px; }
+    .ipt-c{ vertical-align:-2px; margin-right:4px; margin-left:2px; }
+    .atloginwrap{ width:100px; color:#999; font-size:14px; }
+    .gbpasswrord{ width:200px; text-align:right; font-size:14px;
+        a{ color:#999;
+            &:hover{ color:#ED9414 }
+        }
+    }
+    .u-lgbtn{ display:block; height:40px; border:none; line-height:40px; text-align:center; color:#FFF; cursor:pointer; font-size:16px; letter-spacing:5px;
+        &.lgbtn{ width:100%; background-color:#48A4EB;
+            &:hover{ background-color:#48A4EB - #111; }
+        }
+        &.lgreset{ background-color:#FCBD63;
+            &:hover{ background-color:#FCBD63 - #111; }
+        }
+    }
+
+    .captcha{ position:relative; width:130px; margin-right:10px; border:1px solid #CCC; padding:6px 8px 6px 8px; font-size:14px;
+        &.focus{ border-color:#AAC2D9; box-shadow:1px 1px 2px #DEDEDE }
+    }
+    .captcha-img{ display:block; float:left; height:36px; }
+    .captcha-wd{ display:block; width:64px; float:left; text-align:center; font-size:12px; line-height:30px; color:#666;
+        &:hover{ color:#F30; }
+    }
+
+}
+.m-roletype{ width:100%; font-size:14px; color:#666;
+    .tips{ margin-bottom:30px; }
+    .links{ width:80%; display:table; }
+    li{ display:table-cell; cursor:pointer; text-align:center; }
+    @roleLoginIcon:"../images/login/roles_type.png";
+    .cnt{ display:block; width:70px; height:100px; margin:0 auto; color:@ordinColor;
+        b{ display:block; width:70px; height:70px; background:url(@roleLoginIcon);
+            &.rt-8{ background-position:0 69px; }
+            &.rt-9{ background-position:-76px 68px; }
+            &.rt-16{ background-position:-152px -84px; }
+        }
+        &:hover{ color:@global_blue;
+            b{
+                &.rt-8{ background-position:0 0; }
+                &.rt-9{ background-position:-76px 0; }
+                &.rt-16{ background-position:-152px 0; }
+            }
+        }
+        span{ display:inline-block; height:30px; line-height:30px; }
+    }
+}
+/* 报错信息 */
+.g-errotips{ display:none; position:absolute; left:-90%; top:8px; width:300px; line-height:22px; padding:6px 8px; font-size:14px; /*box-shadow:1px 1px 2px #C6AC8D;*/ background-color:#FFF; color:#F30; border:1px solid #FFAB2C; .boxradius(all, 3px);
+    &:before,
+    &:after{ content:'.'; &:extend(.icon-sprite); }
+    &:before{ display:inline-block; float:left; width:25px; height:22px; background-position:-10px -153px; text-indent:-999px; overflow:hidden; }
+    &:after{ position:absolute; top:5px; right:-15px; width:15px; height:25px; text-indent:-999px; overflow:hidden; background-position:-9px -195px; }
+    a{ color:#658CCE;
+        &:hover{ color:#719DE7 }
+    }
+}
+/* 找回密码 */
+.u-errotips{ display:none; position:absolute; height:24px; line-height:24px; padding:0 8px; font-size:12px;
+    -webkit-box-shadow:1px 1px 2px #C6AC8D;
+    box-shadow:1px 1px 2px #C6AC8D;
+    background-color:#FFF;
+    color:#F30;
+    border:1px solid #DDD;
+}
+.g-getbackpw{ width:780px; min-height:360px; margin-top:75px; background-color:#FFF; border:1px solid #E3E3E3;
+    h2{ height:24px; padding:30px 0; font-size:20px; text-align:center; font-weight:normal; }
+    .getcheckwrap{ width:325px; }
+    .getbackpwSection{ width:325px; }
+}
+.u-checksubmit{ display:block; width:100%; height:40px; border:none; line-height:40px; text-align:center; color:#FFF; cursor:pointer; font-size:16px; letter-spacing:5px; background-color:#48A4EB;
+    &:hover{ background-color:#48A4EB - #111; }
+    &[disabled=disabled]{ background-color:#F3F3F3; color:#999;
+        &:hover{ background-color:#F3F3F3; color:#999; }
+    }
+}
+.u-getcheck{ display:block; width:200px; height:38px; line-height:38px; margin-left:10px; font-size:14px; color:#FFF; background-color:#48A4EB; text-align:center; border:none;
+    &[disabled=disabled]{ background-color:#F3F3F3; color:#999; }
+}
+.successInftitle{ font-size:32px; text-align:center; color:#080; }
+.successInftinf{ text-align:center; padding-top:30px;
+    .green{ color:#080 }
+    a{ color:#080 }
+}
+.successInfotips{ height:42px; line-height:42px; color:#080; }
+.g-footer{ position:absolute; bottom:0; width:100%; height:@footerHeight; text-align:center; }

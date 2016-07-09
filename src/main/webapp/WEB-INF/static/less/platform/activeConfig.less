@@ -1,0 +1,35 @@
+@import "../pub/global";
+@import "../lib/component-function";
+@import "../module/m-optnav";
+@import "../module/m-selectui";
+@import "../module/m-search";
+@import "../plug/ymPrompt";
+@import "../module/m-table";
+@import "../module/m-simpleForm";
+@import "../plug/simplePagination";
+.g-dealWrap{ padding:0 0 20px 0; }
+.m-simpleFrom{
+    .labelname{ min-width:90px; }
+    .u-gipt-ipt{ width:280px; }
+    .u-gipt-link{ width:433px; height:56px; }
+    .u-gipt-select{ width:433px; height:80px; }
+    .u-gipt-index{ width:100px;; }
+    .explain{ height:30px; line-height:30px; margin-left:10px; color:#999; font-size:12px; }
+    .txtwrap{ width:445px; }
+    .activeAera{ width:445px;
+        .line{ border-bottom:1px dashed #DDD }
+    }
+    .checkbox-ui{ margin-right:10px;
+        b{ margin-top:8px; margin-right:3px; }
+    }
+    .imglist{
+        @uploadFileSize :80px;
+      /*  width:@uploadFileSize; height:@uploadFileSize; */text-align:center; line-height:@uploadFileSize; overflow:hidden;
+        &:after{ content:'.'; visibility:hidden; }
+        img{ display:inline-block; max-height:@uploadFileSize; max-width:@uploadFileSize; margin:0 10px 0 0; vertical-align:middle; }
+    }
+    .formlist .tips{ display:none; color:#F30; &:extend(.icon-sprite-y); background-position:0 -397px; }
+}
+.dealBtn{ border-top:1px dashed #DDD; width:700px; padding:30px 0; text-align:center;
+    .u-gbtn{ width:90px; }
+}

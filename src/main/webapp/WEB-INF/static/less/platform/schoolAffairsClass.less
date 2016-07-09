@@ -1,0 +1,67 @@
+@import "../pub/global";
+@import "../module/m-selectui";
+@import "../module/m-search";
+@import "../plug/ymPrompt";
+@import "../plug/simplePagination";
+@import "../module/m-simpleForm";
+@import "../module/m-table";
+.g-dealWrap{ padding:0 0 20px 0;
+    .m-selectui,
+    .u-gbtn{ margin-right:10px; }
+}
+.g-tableUl{
+    h1{ font-size:23px; font-weight:normal; border-bottom:1px solid #DDD; padding:0 0 15px; margin:10px 0 20px; margin-top:0; }
+    ul.classtab{ width:100%;
+        li{ width:90px; float:left;
+            &:hover{ }
+            &.active{ }
+        }
+    }
+}
+table{ width:100%; border-collapse:collapse;
+    /* 学校列表 */
+    &.schoollist{
+        td{ text-align:center; padding:5px 10px; font-size:14px; border:1px solid #E9E9E9; }
+        a{ color:#0076A9;
+            &.general{ display:inline-block; height:16px; line-height:16px; color:#0076A9; padding:2px 4px; .boxradius(all, 3px);
+                &:hover{ color:#FFF; background-color:@global_blue; }
+            }
+            &.long{ display:inline-block; max-width:130px; height:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:16px; color:#0076A9; padding:2px 4px; .boxradius(all, 3px);
+                &:hover{ text-decoration:underline; }
+            }
+        }
+    }
+}
+.g-gradelistTab{ width:100%; display:table; position:relative; top:1px; }
+.m-gradelist{ display:table-row;
+    ul{ display:table-row }
+    li{ display:table-cell; height:36px; padding:0 5px; text-align:center; border:1px solid transparent; line-height:36px; cursor:pointer; .boxsizing();
+        &.active{ background-color:#FFF; border:1px solid #B8D1E4; border-bottom-color:#FFF;
+            &:hover{ background-color:#FFF; border-bottom-color:#FFF; }
+        }
+        &:hover{ background-color:#F6F6F6; border-bottom:1px solid #DDD; }
+    }
+}
+.m-classesGroup{ padding:20px; border:1px solid #B8D1E4;
+    li{ float:left; width:15.8%; margin-top:3px; margin-right:3px; border:1px solid #DDD;
+        &.head{ background-color:#F6F6F6; }
+        &.addli{ width:24px; height:108px; margin-right:-24px; border:none; }
+    }
+    .li-td{ display:block; height:16px; padding:10px; text-align:center; border-top:1px solid #DDD; }
+    span.li-td{ border-top:none; }
+    a{ color:#0076A9; display:inline-block; min-width:40px; height:16px; line-height:16px; padding:2px 4px; .boxradius(all, 3px); cursor:pointer;
+        &:hover{ color:#FFF; background-color:@global_blue; }
+    }
+    .s-addClass,
+    .s-reduceClass{ width:24px; min-width:24px; max-width:24px; height:50px; background-color:#0F9A4D; line-height:50px; text-align:center; font-size:24px; color:#FFF; cursor:pointer; }
+    .s-addClass{ margin-bottom:4px; }
+    .headerteacher{ display:block; position:relative; overflow:hidden; white-space:nowrap; display:block; text-overflow:ellipsis; line-height:16px;
+        &:hover{ border:1px dashed #DDD; background-color:#FFF; overflow:auto; white-space:normal; padding:4px 5px; background-color:#FFF; margin-top:-5px; margin-left:0px; }
+    }
+
+}
+.g-selectTeacher{ display:none; z-index:198; position:absolute; top:100px; left:100px; width:135px; padding:5px; background:#FFF;
+    a.closeWin{ width:15px; height:15px; display:block; position:absolute; top:0; right:-15px; text-align:center; line-height:20px; color:#FFF; background-color:#FF9C00; font-size:12px;&:extend(.icon-sprite-y); background-position:-4px -469px; }
+    .intotext{ width:120px; }
+}
+.u-mask{ display:none; position:fixed; top:0; left:0; z-index:190; width:100%; height:100%; background-color:#000; .opacity(0.6); }

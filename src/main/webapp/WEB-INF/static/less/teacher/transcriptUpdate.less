@@ -1,0 +1,48 @@
+@import "../pub/teacher_global";
+@import "../lib/component-function";
+@import "../module/m-teacherNav";
+@import "../plug/ymPromptTeacher";
+.fallBack{ height:30px; line-height:30px; padding:10px 20px;
+    a{ color:#666;
+        &:hover{ color:#FF783A }
+    }
+}
+.m-transcriptUpdate{ background-color:#FFF; margin-bottom:50px;
+    .tableContent{ width:750px; margin:15px auto 0; padding-bottom:50px; }
+    table{ width:100%; border-collapse:collapse; }
+    thead{ border-bottom:1px solid #DDD; }
+    td{ padding:15px; line-height:24px; vertical-align:top; }
+    .dealContent{ padding:30px 0 10px; text-align:center; }
+
+    .transcriptDemoDownload{ color:#0076A9;
+        &:hover{ text-decoration:underline; }
+    }
+}
+.m-transcriptUpdateFallback{ background-color:#FFF; margin-bottom:30px;
+    .tuf-inf{ height:36px; line-height:36px; padding:10px 20px; font-size:16px; }
+    table{ table-layout:fixed; border-collapse:collapse; border-top:1px solid #DDD; }
+    td{ text-align:center; padding:10px 0; border-bottom:1px solid #DDD;
+        .tips{ display:block; padding-left:25px; margin-left:20px; text-align:left; &:extend(.icon-sprite-teacher-y); background-position:0px -750px; color:#060 }
+        .error{ display:block; padding-left:25px; margin-left:20px; text-align:left; background-position:0px -711px; color:#C40034 }
+
+    }
+    thead{ background-color:#F1F1F1;
+        td{ font-weight:bold; }
+    }
+    .checkbox-ui-choseAll{ display:inline-block; max-width:50px; min-width:48px; margin:0 auto;
+        b{ margin-top:3px; margin-right:5px; }
+    }
+    .checkbox-ui{ width:14px; margin:0 auto;}
+
+    .tabledeal{ padding:10px 20px; line-height:24px;
+        .u-gbtn{ height:24px; line-height:24px; }
+    }
+
+    .u-gipt{ width:90%; text-align:center; border:1px dotted #DDD; background:none;
+        &:focus{ border-color:transparent; }
+    }
+    .btn-wrap{ padding:20px;}
+}
+
+
+

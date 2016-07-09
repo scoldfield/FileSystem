@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/mvc 
+	http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<!-- <context:property-placeholder location="classpath:resources.properties" /> -->
+
+	<context:component-scan base-package="com.cmcc.filesystem.controller, com.cmcc.filesystem.util"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	<mvc:annotation-driven>
+		<mvc:argument-resolvers>
+			<bean class="com.cmcc.filesystem.web.bind.CurrentUserMethodArgumentResolver" />
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+	<!-- 当在web.xml 中 DispatcherServlet使用 <url-pattern>/</url-pattern> 映射时，能映射静态资源 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 对静态资源文件的访问方案 默认 -->
+	<!-- <mvc:default-servlet-handler /> -->
+	<!-- 静态资源映射 -->
+	<mvc:resources mapping="/static/**" location="/WEB-INF/static/" />
+
+	<!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
+	<bean id="defaultViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:order="1">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="contentType" value="text/html" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- 控制器异常处理 -->
+	<!--<bean id="exceptionHandlerExceptionResolver" class="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver"></bean> 
+		<bean class="com.cmcc.xxt.web.exception.DefaultExceptionHandler"/> <bean 
+		class="com.cmcc.xxt.web.exception.SQLExceptionHandler"/> -->
+
+	<bean id="exceptionResolver"
+		class="com.cmcc.filesystem.web.exception.PlatformMappingExceptionResolver">
+		<!--配合自定义的异常解析器 -->
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.dao.DuplicateKeyException">exception/operationMiss</prop>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">exception/unauthorized</prop>
+				<prop key="java.io.FileNotFoundException">exception/unauthorized</prop>
+				<prop key="org.springframework.dao.DataIntegrityViolationException">exception/tooLong</prop>
+
+			</props>
+		</property>
+	</bean>
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>524288000</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+	</bean>
+	<import resource="spring-mvc-shiro.xml" />
+	<!-- end -->
+</beans>

@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cmcc.filesystem.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.cmcc.filesystem.entity.User">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="job_id" jdbcType="VARCHAR" property="jobId" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="salt" jdbcType="VARCHAR" property="salt" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="sex" jdbcType="BIT" property="sex" />
+		<result column="dept_id" jdbcType="BIGINT" property="deptId" />
+		<result column="dept" jdbcType="VARCHAR" property="dept" />
+		<result column="mobile" jdbcType="VARCHAR" property="mobile" />
+		<result column="role_id" jdbcType="BIGINT" property="roleId" />
+		<result column="position" jdbcType="VARCHAR" property="position" />
+		<result column="create_time" jdbcType="DATE" property="createTime" />
+		<result column="last_access_time" jdbcType="DATE" property="lastAccessTime" />
+		<result column="ip" jdbcType="VARCHAR" property="ip" />
+		<result column="state" jdbcType="TINYINT" property="state" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, job_id, username, password, salt, name, sex, dept_id, dept, mobile,
+		role_id, position, create_time, last_access_time,
+		ip, state
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from sys_user
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.cmcc.filesystem.entity.User"
+		keyProperty="id" useGeneratedKeys="true">
+		<!-- <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long"> 
+			SELECT LAST_INSERT_ID() </selectKey> -->
+		insert into sys_user (job_id, username, password, salt, name,
+		sex, dept_id, dept, mobile, role_id, position,
+		create_time, last_access_time, ip,
+		state)
+		values (#{jobId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{sex,jdbcType=BIT}, #{deptId,jdbcType=BIGINT}, #{dept,jdbcType=VARCHAR},
+		#{mobile,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT},
+		#{position,jdbcType=VARCHAR},
+		#{createTime,jdbcType=DATE}, #{lastAccessTime,jdbcType=DATE}, #{ip,jdbcType=VARCHAR},
+		#{state,jdbcType=BIT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.cmcc.filesystem.entity.User"
+		keyProperty="id" useGeneratedKeys="true">
+		<!-- <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long"> 
+			SELECT LAST_INSERT_ID() </selectKey> -->
+		insert into sys_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="jobId != null">
+				job_id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="deptId != null">
+				dept_id,
+			</if>
+			<if test="dept != null">
+				dept,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="roleId != null">
+				role_id,
+			</if>
+			<if test="position != null">
+				position,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="lastAccessTime != null">
+				last_access_time,
+			</if>
+			<if test="ip != null">
+				ip,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="jobId != null">
+				#{jobId,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=BIT},
+			</if>
+			<if test="deptId != null">
+				#{deptId,jdbcType=BIGINT},
+			</if>
+			<if test="dept != null">
+				#{dept,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=BIGINT},
+			</if>
+			<if test="position != null">
+				#{position,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=DATE},
+			</if>
+			<if test="lastAccessTime != null">
+				#{lastAccessTime,jdbcType=DATE},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=BIT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cmcc.filesystem.entity.User">
+		update sys_user
+		<set>
+			<if test="jobId != null">
+				job_id = #{jobId,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=BIT},
+			</if>
+			<if test="deptId != null">
+				dept_id = #{deptId,jdbcType=BIGINT},
+			</if>
+			<if test="dept != null">
+				dept = #{dept,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				role_id = #{roleId,jdbcType=BIGINT},
+			</if>
+			<if test="position != null">
+				position = #{position,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=DATE},
+			</if>
+			<if test="lastAccessTime != null">
+				last_access_time = #{lastAccessTime,jdbcType=DATE},
+			</if>
+			<if test="ip != null">
+				ip = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=BIT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cmcc.filesystem.entity.User">
+		update sys_user
+		set job_id = #{jobId,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		salt = #{salt,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=BIT},
+		dept = #{dept,jdbcType=VARCHAR},
+		dept_id = #{deptId,jdbcType=BIGINT},
+		mobile = #{mobile,jdbcType=VARCHAR},
+		role_id = #{roleId,jdbcType=BIGINT},
+		position = #{position,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=DATE},
+		last_access_time = #{lastAccessTime,jdbcType=DATE},
+		ip = #{ip,jdbcType=VARCHAR},
+		state = #{state,jdbcType=BIT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="findByUsername" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where username = #{username,jdbcType=VARCHAR}
+	</select>
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where state = 1
+	</select>
+	<select id="findBySelective" parameterType="com.cmcc.filesystem.entity.User" resultMap="BaseResultMap">
+		select * 
+		from sys_user
+		where 1=1
+		<if test="jobId != null">
+			and job_id = #{jobId,jdbcType=VARCHAR}
+		</if>
+		<if test="username != null">
+			and username = #{username,jdbcType=VARCHAR}
+		</if>
+		<if test="password != null">
+			and password = #{password,jdbcType=VARCHAR}
+		</if>
+		<if test="salt != null">
+			and salt = #{salt,jdbcType=VARCHAR}
+		</if>
+		<if test="name != null">
+			and name = #{name,jdbcType=VARCHAR}
+		</if>
+		<if test="sex != null">
+			and sex = #{sex,jdbcType=BIT}
+		</if>
+		<if test="deptId != null">
+			and dept_id = #{deptId,jdbcType=BIGINT}
+		</if>
+		<if test="dept != null">
+			and dept = #{dept,jdbcType=VARCHAR}
+		</if>
+		<if test="mobile != null">
+			and mobile = #{mobile,jdbcType=VARCHAR}
+		</if>
+		<if test="roleId != null">
+			and role_id = #{roleId,jdbcType=BIGINT}
+		</if>
+		<if test="position != null">
+			and position = #{position,jdbcType=VARCHAR}
+		</if>
+		<if test="createTime != null">
+			and create_time = #{createTime,jdbcType=DATE}
+		</if>
+		<if test="lastAccessTime != null">
+			and last_access_time = #{lastAccessTime,jdbcType=DATE}
+		</if>
+		<if test="ip != null">
+			and ip = #{ip,jdbcType=VARCHAR}
+		</if>
+		<if test="state != null">
+			and state = #{state,jdbcType=BIT}
+		</if>
+	</select>
+</mapper>

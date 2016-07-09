@@ -1,0 +1,85 @@
+@import "../pub/global";
+@import "../module/m-selectui";
+@import "../module/m-search";
+@import "../plug/ymPrompt";
+@import "../module/m-table";
+@import "../plug/simplePagination";
+@import "../module/m-simpleForm";
+.g-dealWrap{ padding:0 0 20px 0;
+    .m-selectui,
+    .u-gbtn{ margin-right:10px; }
+}
+/* selectUI */
+.m-selectui-classDetailsc{
+    width:220px;
+    .intotext{ width:206px; }
+}
+.m-selectui-classDetailcl{
+    width:160px;
+    .intotext{ width:146px; }
+}
+.m-selectui-area{
+    width:160px;
+    ul.optionwarp{ width:100%;}
+    .intotext{ width:146px; }
+}
+
+.m-selectui-schoolTypeList{
+    width:180px;
+    .intotext{ width:166px; }
+}
+.m-selectui-eduStartDate{
+    width:150px;
+    .intotext{ width:136px; }
+}
+/* 班级详情  */
+@familiarityWidth:100px;
+@familiarityHeight:30px;
+@familiarityInnerPadding:10px;
+.fs-familiarity{ display:block; position:relative; width:@familiarityWidth; border:1px solid transparent;
+    .mainnumber{ display:block; width:@familiarityWidth; height:@familiarityHeight; line-height:@familiarityHeight; text-align:center; }
+    .numberlist{ display:none; position:absolute; top:29px; left:-1px; width:@familiarityWidth - @familiarityInnerPadding * 2;
+        padding:0 @familiarityInnerPadding 5px; background-color:#FFF; border:1px solid #DDD; border-top-color:#FFF; text-align:left;
+        b{ display:block; height:21px; line-height:21px; font-weight:normal; border-top:1px dotted #DDD; }
+        span{ display:block; height:21px; line-height:21px; }
+    }
+    &:hover{ border-color:#DDD; background-color:#FFF;
+        .numberlist{ display:block; font-size:12px; }
+    }
+}
+.ym-dwbody{ padding:20px 40px 5px; border-bottom:1px dashed #DDD;
+    h2{ font-weight:normal; padding:5px 0; margin:0; }
+    p{ height:36px; line-height:36px; font-size:14px; }
+    .transfertips{ height:18px; font-size:12px; color:#F30; line-height:18px;; padding-top:7px; }
+}
+#ym-window, .ym-body{ overflow:visible; }
+.m-selectui-scCltransfer{ width:234px; margin-top:10px;
+    .intotext{ width:220px; }
+}
+/* 学生信息修改 */
+.m-simpleFrom-infoleft{ width:420px; margin:0 10px 0 0; }
+.m-simpleFrom-inforight{ width:420px; margin:0; }
+.m-simpleFrom{ background-color:#F9F9F9; padding:10px;
+    label{ width:60px; text-align:right; }
+    .formlist{ padding:10px 0 15px 0; border-bottom:1px dashed #DDD }
+    .u-gipt-classsp{ width:98px; }
+    .u-gipt-job{ width:112px; }
+    .u-gipt-card{ width:286px; }
+}
+.m-selectui-classDetailsn{
+    width:300px;
+    .intotext{ width:286px; }
+}
+.m-selectui-classEditClass{
+    width:145px; margin-right:10px;;
+    .intotext{ width:131px; }
+}
+.m-selectui-strelations{ width:124px;
+    .intotext{ width:110px; }
+}
+.g-classEditDeal{ padding:20px; text-align:center;
+    .u-gbtn{ width:80px; text-align:center; }
+}
+/* 班级查询结果 未设置 */
+.g-content-classDetalEdit{ width:900px; }
+.g-content-classnoset{ width:640px; }
