@@ -31,8 +31,18 @@ public class BorrowAudit implements Serializable {
     private String operatorId;  //审核人id
 
     private String operatorName;    //审核人name
+    
+    private Date returnTime;	//归还时间
 
-    private static final long serialVersionUID = 1L;
+	public Date getReturnTime() {
+		return returnTime;
+	}
+
+	public void setReturnTime(Date returnTime) {
+		this.returnTime = returnTime;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Long getFileId() {
         return fileId;

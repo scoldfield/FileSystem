@@ -49,6 +49,8 @@ public class FileDto {
 
     private Boolean state;
 
+    private String location;
+
     
     /*
      * 附加字段
@@ -64,7 +66,15 @@ public class FileDto {
     private String generateDateStr;     //签发日期，字符串
 
 
-    public String getGenerateDateStr() {
+    public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getGenerateDateStr() {
         return generateDateStr;
     }
 

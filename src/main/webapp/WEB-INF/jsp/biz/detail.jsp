@@ -15,9 +15,6 @@
 </head>
 <body>
 
-
-
-	<form action="${pageContext.request.contextPath }/fileMng/list" method="post">
 		<table border="1" width="920" cellspacing="0" cellpadding="0" bgcolor="white" align="center">
 			<tr align="center" height="40" >
 				<td>
@@ -177,8 +174,8 @@
                 <!-- 改成审核通过、审核不通过 -->
                     <!-- 未被审核  -->
                     <c:if test="${fileDto.auditResult=='0' }">
-                       <a href="${pageContext.request.contextPath }/biz/audit?fileId=${fileDto.id}&res=1"> 审核通过&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/biz/audit?fileId=${fileDto.id}&res=-1">审核不通过</a>
+                       <a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=1"> 审核通过&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=-1">审核不通过</a>
                     </c:if>
                     
                     <!-- 审核不通过 -->
@@ -190,13 +187,6 @@
                         <c:if test="${fileDto.isBorrowed==true }">已经被借出，借阅人为${fileDto.borrowedName }</c:if>
                     </c:if> --%>
 				</td>
-			</tr>
-			<tr align="center" height="40" >
-                <td></td>
-				<td>
-					<input type="submit" value="确定">
-				</td>
-				
 			</tr>
 		</table>
 		

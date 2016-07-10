@@ -8,6 +8,10 @@ public class Resource implements Serializable {
     private String name;
 
     private String type;
+    
+    private Boolean allDept;
+    
+    private String fileSecretLevel;
 
     private String url;
 
@@ -21,7 +25,23 @@ public class Resource implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getId() {
+    public Boolean getAllDept() {
+		return allDept;
+	}
+
+	public void setAllDept(Boolean allDept) {
+		this.allDept = allDept;
+	}
+
+	public String getFileSecretLevel() {
+		return fileSecretLevel;
+	}
+
+	public void setFileSecretLevel(String fileSecretLevel) {
+		this.fileSecretLevel = fileSecretLevel;
+	}
+
+	public Long getId() {
         return id;
     }
 

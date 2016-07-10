@@ -11,7 +11,7 @@ private Long id;
 
     private String deptName;    //审核部门的名字
 
-    private String disabled;     //2：待审核（初始化） 1：已通过  0：未通过   -2：删除
+    private String disabled;     //2:待审核;1:借出;-1:归还;0:不同意借出
 
     private Long applyUserId;   //申请人id
 
@@ -31,7 +31,50 @@ private Long id;
 
     private String operatorName;    //审核人name
 
+    private Date returnTime;	//归还时间
+
     
+    //新增字段
+    private String secretLevel;		//密级
+    
+    private String generateWord;	//档案文字号
+    
+    private String fileTitle;		//档案标题
+    
+	public String getFileTitle() {
+		return fileTitle;
+	}
+
+	public void setFileTitle(String fileTitle) {
+		this.fileTitle = fileTitle;
+	}
+
+	public String getGenerateWord() {
+		return generateWord;
+	}
+
+	public void setGenerateWord(String generateWord) {
+		this.generateWord = generateWord;
+	}
+
+	public String getSecretLevel() {
+		return secretLevel;
+	}
+
+	public void setSecretLevel(String secretLevel) {
+		this.secretLevel = secretLevel;
+	}
+
+	public Date getReturnTime() {
+		return returnTime;
+	}
+
+	public void setReturnTime(Date returnTime) {
+		this.returnTime = returnTime;
+	}
+    
+	
+	
     //新增字段
     private String fileName;
     

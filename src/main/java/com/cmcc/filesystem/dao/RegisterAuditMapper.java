@@ -18,4 +18,6 @@ public interface RegisterAuditMapper {
     int updateByPrimaryKey(RegisterAudit record);
 
     List<RegisterAudit> findSelective(RegisterAudit record);
+    
+    RegisterAudit findByUserId(Long userId);
 }

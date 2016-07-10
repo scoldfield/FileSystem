@@ -50,4 +50,9 @@ public class RegisterAuditServiceImpl implements IRegisterAuditService {
         return registerAuditMapper.findSelective(record);
     }
 
+	public RegisterAudit findByUserId(Long userId) {
+		// TODO Auto-generated method stub
+		return registerAuditMapper.findByUserId(userId);
+	}
+
 }

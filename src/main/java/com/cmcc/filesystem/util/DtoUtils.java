@@ -351,6 +351,9 @@ public class DtoUtils {
         
         File file = fileService.selectByPrimaryKey(ba.getFileId() + "");
         bad.setFileName(file.getFileTitle());
+        bad.setSecretLevel(file.getSecretLevel());
+        bad.setGenerateWord(file.getGenerateWord());
+        bad.setFileTitle(file.getFileTitle());
         
         return bad;
     }

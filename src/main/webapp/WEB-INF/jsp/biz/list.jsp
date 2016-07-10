@@ -8,11 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1" align="center" width="1000">
+	<table border="1" align="center" width="95%">
         <tr>
-            <td align="center">
-                                                <b>审核序列号</b>
-            </td>
             <td align="center">
                                                 <b>标题</b>
             </td>
@@ -21,6 +18,9 @@
             </td>
             <td align="center">
                                                 <b>审核人</b>
+            </td>
+            <td align="center">
+                                                <b>审核序列号</b>
             </td>
             <td align="center">
                                                 <b>审核时间</b>
@@ -36,9 +36,6 @@
         
         <c:forEach items="${fileDtos }" var="fileDto">
             <tr>
-                <td align="center">
-                    ${fileDto.id }
-                </td>
                 <td>
                     ${fileDto.fileTitle }
                 </td>
@@ -46,19 +43,28 @@
                     ${fileDto.receiveUserName }
                 </td>
                 <td align="center">
-                    ${fileDto.auditorName }
+                	<c:if test="${fileDto.auditorName==null }">尚未审核</c:if>
+                	<c:if test="${fileDto.auditorName!=null }">${fileDto.auditorName }</c:if>
                 </td>
                 <td align="center">
-                    ${fileDto.auditDate }
+                	<c:if test="${fileDto.auditSerials==null }">尚未审核</c:if>
+                	<c:if test="${fileDto.auditSerials!=null }">${fileDto.auditSerials }</c:if>
+                </td>
+                <td align="center">
+                	<c:if test="${fileDto.auditDate==null }">尚未审核</c:if>
+                	<c:if test="${fileDto.auditDate!=null }">${fileDto.auditDate }</c:if>
                 </td>
                 <td align="center">
                     <!-- 审核结果：1：通过；0：未审核；-1：审核未通过 -->
-                    <c:if test="${fileDto.auditResult==1 }">审核通过</c:if>
-                    <c:if test="${fileDto.auditResult==0 }">未审核</c:if>
-                    <c:if test="${fileDto.auditResult==-1 }">审核未通过</c:if>
+                    <c:if test="${fileDto.auditResult==1 }">审核通过&nbsp</c:if>
+                    <c:if test="${fileDto.auditResult==0 }">未审核&nbsp</c:if>
+                    <c:if test="${fileDto.auditResult==-1 }">审核未通过&nbsp</c:if>
+                    
+                    <c:if test="${fileDto.fillingDate!=null }">已归档&nbsp</c:if>
                 </td>
                 <td align="center">
                     <c:if test="${fileDto.auditResult==0 }"><a href="${pageContext.request.contextPath }/biz/detail?fileId=${fileDto.id }">去审核</a></c:if>    
+                    <c:if test="${fileDto.auditResult==1 && fileDto.fillingDate==null }"><a href="${pageContext.request.contextPath }/biz/filling?fileId=${fileDto.id }">归档</a></c:if>
                 </td>
             </tr>
         </c:forEach>

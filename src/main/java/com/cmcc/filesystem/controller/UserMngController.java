@@ -1,5 +1,6 @@
 package com.cmcc.filesystem.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cmcc.filesystem.dto.UserDto;
 import com.cmcc.filesystem.entity.Dept;
+import com.cmcc.filesystem.entity.RegisterAudit;
 import com.cmcc.filesystem.entity.Role;
 import com.cmcc.filesystem.entity.User;
 import com.cmcc.filesystem.entity.UserDeptRole;
 import com.cmcc.filesystem.service.IDeptService;
+import com.cmcc.filesystem.service.IRegisterAuditService;
 import com.cmcc.filesystem.service.IRoleService;
 import com.cmcc.filesystem.service.IUserDeptRoleService;
 import com.cmcc.filesystem.service.IUserService;
@@ -42,6 +45,9 @@ public class UserMngController {
     
     @Autowired
     private IUserDeptRoleService userDeptRoleService;
+    
+    @Autowired
+    private IRegisterAuditService registerAuditService;
     
     @RequestMapping("/list")
     public String list(Model model) {
@@ -85,6 +91,13 @@ public class UserMngController {
         udr.setIsDeptManager("1".equals(isDeptManager) ? Boolean.TRUE : Boolean.FALSE);
         udr.setIsFileManager("1".equals(isFileManager) ? Boolean.TRUE : Boolean.FALSE);
         userDeptRoleService.insertSelective(udr);
+        
+        //更新sys_register_audit表，用于新注册用户的审核
+        RegisterAudit registerAudit = new RegisterAudit();
+        registerAudit.setUserId(user.getId());
+        registerAudit.setDeptId(user.getDeptId());
+        registerAudit.setState(Boolean.FALSE);
+        registerAuditService.insertSelective(registerAudit);
         
         return "redirect:list";
     }
@@ -146,14 +159,17 @@ public class UserMngController {
         User user = new User();
         user.setState(Boolean.FALSE);
         List<User> users = userService.findBySelective(user);
-//        if(users.size() > 0) {
-//            for(User u : users) {
-//                u.setState(Boolean.TRUE);
-//                userService.updateByPrimaryKeySelective(u);
-//            }
-//        }
         
-        model.addAttribute("users", users);
+        List<UserDto> userDtos = new ArrayList<UserDto>();
+        UserDto userDto;
+        if(users.size() > 0) {
+            for(User u : users) {
+                userDto = dtoUtils.userToUserDto(u);
+                userDtos.add(userDto);
+            }
+        }
+        
+        model.addAttribute("userDtos", userDtos);
         return "user/auditList";
     } 
 
@@ -162,8 +178,14 @@ public class UserMngController {
         if(StringUtils.hasText(userId)) {
             User user = userService.selectByPrimaryKey(Long.parseLong(userId));
             if(user != null) {
+            	//更新sys_user表
                 user.setState(Boolean.TRUE);
                 userService.updateByPrimaryKeySelective(user);
+                
+                //更新sys_register_audit表
+                RegisterAudit registerAudit = registerAuditService.findByUserId(user.getId());
+                registerAudit.setState(Boolean.TRUE);
+                registerAuditService.updateByPrimaryKeySelective(registerAudit);
             }
         }
         

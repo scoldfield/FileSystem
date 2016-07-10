@@ -36,6 +36,7 @@
 		<result column="is_borrowed" property="isBorrowed" jdbcType="BIT" />
 		<result column="borrower_id" property="borrowerId" jdbcType="BIGINT" />
 		<result column="state" property="state" jdbcType="BIT" />
+		<result column="location" property="location" jdbcType="VARCHAR" />
 	</resultMap>
 	<insert id="insert" parameterType="com.cmcc.filesystem.entity.File">
 		<selectKey resultType="java.lang.Long" keyProperty="id"
@@ -52,7 +53,7 @@
 		audit_serials,
 		audit_date, audit_result, filling_date,
 		is_borrowed,
-		borrower_id, state
+		borrower_id, stat, location
 		)
 		values (#{fileId,jdbcType=VARCHAR},
 		#{fileTitle,jdbcType=VARCHAR},
@@ -70,7 +71,7 @@
 		#{auditDate,jdbcType=DATE}, #{auditResult,jdbcType=VARCHAR},
 		#{fillingDate,jdbcType=DATE},
 		#{isBorrowed,jdbcType=BIT},
-		#{borrowerId,jdbcType=BIGINT}, #{state,jdbcType=BIT}
+		#{borrowerId,jdbcType=BIGINT}, #{state,jdbcType=BIT}, #{location,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.cmcc.filesystem.entity.File">
@@ -146,6 +147,9 @@
 			<if test="state != null">
 				state,
 			</if>
+			<if test="location != null">
+				location,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="fileId != null">
@@ -213,6 +217,9 @@
 			</if>
 			<if test="state != null">
 				#{state,jdbcType=BIT},
+			</if>
+			<if test="location != null">
+				#{location,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -290,7 +297,10 @@
 				borrower_id = #{borrowerId,jdbcType=BIGINT},
 			</if>
 			<if test="state != null">
-				state = #{state,jdbcType=BIT}
+				state = #{state,jdbcType=BIT},
+			</if>
+			<if test="location != null">
+				location = #{location,jdbcType=VARCHAR}
 			</if>
 		</set>
 		where id = #{id,jdbcType=BIGINT}
@@ -299,7 +309,7 @@
 		resultMap="BaseResultMap">
 		select *
 		from sys_file
-		where id = #{id}
+		where id = #{id} and state = 1
 	</select>
 	<select id="findLikeSelective" parameterType="com.cmcc.filesystem.entity.File"
 		resultMap="BaseResultMap">
@@ -369,6 +379,9 @@
 		<if test="borrowerId != null">
 			and borrower_id = #{borrowerId,jdbcType=BIGINT}
 		</if>
+		<if test="location != null">
+			and location = #{location,jdbcType=VARCHAR}
+		</if>
 	</select>
 	<select id="findSelective" parameterType="com.cmcc.filesystem.entity.File"
 		resultMap="BaseResultMap">
@@ -437,6 +450,9 @@
 		</if>
 		<if test="borrowerId != null">
 			and borrower_id = #{borrowerId,jdbcType=BIGINT}
+		</if>
+		<if test="location != null">
+			and location = #{location,jdbcType=VARCHAR}
 		</if>
 	</select>
 </mapper>

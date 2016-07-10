@@ -36,6 +36,15 @@ public class Constants {
         SECRET_LEVEL_RESOURCE_ID.put("内部", "4");
         SECRET_LEVEL_RESOURCE_ID.put("普通", "5");
     }
+    //密级与role_type的对应值
+    public static final Map<String, String> SECRET_LEVEL_FILEMANAGER_LEVEL = new HashMap<String, String>();
+    static {
+    	SECRET_LEVEL_FILEMANAGER_LEVEL.put("绝密", "一级");
+    	SECRET_LEVEL_FILEMANAGER_LEVEL.put("机密", "二级");
+    	SECRET_LEVEL_FILEMANAGER_LEVEL.put("秘密", "二级");
+    	SECRET_LEVEL_FILEMANAGER_LEVEL.put("内部", "三级");
+    	SECRET_LEVEL_FILEMANAGER_LEVEL.put("普通", "三级");
+    }
 	
     //所有的角色id
     public static final String ROLEID1 = "1";
@@ -48,15 +57,32 @@ public class Constants {
     //角色可以拥有的所有权限
     public static final Map<String, String> ROLE_RESOURCEIDS = new HashMap<String, String>();
     static {
-        ROLE_RESOURCEIDS.put(ROLEID1, "11,21,31,32,41,42,12,22,32,42,1,2");
-        ROLE_RESOURCEIDS.put(ROLEID2, "21,22,31,32,41,42,11,12,21,22,31,32,41,42");
-        ROLE_RESOURCEIDS.put(ROLEID3, "31,32,41,42,31,32,41,42");
-        ROLE_RESOURCEIDS.put(ROLEID4, "11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38,41,42,43,44,45,46,47,48,1,2");
-        ROLE_RESOURCEIDS.put(ROLEID5, "13,15,17,21,22,23,25,27,31,32,33,35,37,41,42,43,45,47,11,12,21,22,31,32,41,42,15,16,25,26,35,36,45,46,17,18,27,28,37,38,47,48");
-        ROLE_RESOURCEIDS.put(ROLEID6, "31,32,33,35,37,41,42,43,45,47,31,32,41,42,35,36,45,46,37,38,47,48");
+//        ROLE_RESOURCEIDS.put(ROLEID1, "11,21,31,32,41,42,12,22,32,42,1,2");
+//        ROLE_RESOURCEIDS.put(ROLEID2, "21,22,31,32,41,42,11,12,21,22,31,32,41,42");
+//        ROLE_RESOURCEIDS.put(ROLEID3, "31,32,41,42,31,32,41,42");
+//        ROLE_RESOURCEIDS.put(ROLEID4, "11,12,13,14,15,16,17,18,21,22,23,24,25,26,27,28,31,32,33,34,35,36,37,38,41,42,43,44,45,46,47,48,1,2");
+//        ROLE_RESOURCEIDS.put(ROLEID5, "13,15,17,21,22,23,25,27,31,32,33,35,37,41,42,43,45,47,11,12,21,22,31,32,41,42,15,16,25,26,35,36,45,46,17,18,27,28,37,38,47,48");
+//        ROLE_RESOURCEIDS.put(ROLEID6, "31,32,33,35,37,41,42,43,45,47,31,32,41,42,35,36,45,46,37,38,47,48");
+
+        ROLE_RESOURCEIDS.put(ROLEID1, "21,31,41,42,51,52,22,32,42,52,11,12");
+        ROLE_RESOURCEIDS.put(ROLEID2, "31,32,41,42,51,52,21,22,31,32,41,42,51,52");
+        ROLE_RESOURCEIDS.put(ROLEID3, "41,42,51,52,41,42,51,52");
+        ROLE_RESOURCEIDS.put(ROLEID4, "21,23,24,25,26,27,28,31,33,34,35,36,37,38,41,42,43,44,45,46,47,48,51,52,53,54,55,56,57,58,11,12");
+        ROLE_RESOURCEIDS.put(ROLEID5, "23,25,27,31,32,33,35,37,41,42,43,45,47,51,52,53,55,57,21,22,31,32,41,42,51,52,35,36,45,46,55,56,27,28,37,38,47,48,57,58");
+        ROLE_RESOURCEIDS.put(ROLEID6, "41,42,43,45,47,51,52,53,55,57,43,44,45,46,47,48,53,54,55,56,57,58");
     }
 	
+    //"接受档案"的状态码
+    public static final Long RECEIVE_AUDIT_ID = 0l;		//用sys_file表中的audit_id字段来表示该文件是否被接收审核过？0：表示未被审核
+    
+    //"接收档案"审核结果状态码
+    public static final String RECEIVE_AUDIT_RESULT1 = "1";		//1:审核通过
+    public static final String RECEIVE_AUDIT_RESULT0 = "0";		//0:审核不通过
 	
+    //上传的档案的存储地址
+    public static final String FILE_PATH = "Q:\\upload";
+    
+    
 	
 	
 	

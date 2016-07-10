@@ -50,7 +50,17 @@ public class File implements Serializable {
 
     private Boolean state;
 
-    public String getIssueUserName() {
+    private String location;
+
+    public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getIssueUserName() {
         return issueUserName;
     }
 

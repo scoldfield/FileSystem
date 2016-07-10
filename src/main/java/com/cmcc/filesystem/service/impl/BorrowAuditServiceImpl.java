@@ -55,4 +55,9 @@ public class BorrowAuditServiceImpl implements IBorrowAuditService {
         return borrowAuditMapper.findByFileId(fileId);
     }
 
+	public List<BorrowAudit> findAll() {
+		// TODO Auto-generated method stub
+		return borrowAuditMapper.findAll();
+	}
+
 }

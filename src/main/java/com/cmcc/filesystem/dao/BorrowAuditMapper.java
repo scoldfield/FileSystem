@@ -20,4 +20,6 @@ public interface BorrowAuditMapper {
     List<BorrowAudit> findBySelective(BorrowAudit record);
     
     List<BorrowAudit> findByFileId(Long fileId);
+
+    List<BorrowAudit> findAll();
 }

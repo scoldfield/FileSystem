@@ -3,6 +3,7 @@ package com.cmcc.filesystem.service;
 import java.util.List;
 
 import com.cmcc.filesystem.entity.Resource;
+import com.cmcc.filesystem.entity.User;
 
 public interface IResourceService {
 	int deleteByPrimaryKey(Long id);
@@ -16,5 +17,10 @@ public interface IResourceService {
     int updateByPrimaryKeySelective(Resource record);
 
     int updateByPrimaryKey(Resource record);
+    
+    /*
+     * 获取登录用户的所有权限Resource
+     */
+    List<Resource> getUserResources();
     
 }
