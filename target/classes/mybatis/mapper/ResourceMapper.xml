@@ -5,6 +5,8 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="all_dept" property="allDept" jdbcType="TINYINT" />
+    <result column="file_secret_level" property="fileSecretLevel" jdbcType="VARCHAR" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="parent_id" property="parentId" jdbcType="BIGINT" />
     <result column="parent_ids" property="parentIds" jdbcType="VARCHAR" />
@@ -12,7 +14,7 @@
     <result column="state" property="state" jdbcType="BIT" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, name, type, url, parent_id, parent_ids, permission, state
+    id, name, type, all_dept, file_secret_level, url, parent_id, parent_ids, permission, state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -28,10 +30,10 @@
     <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into sys_resource (name, type, url, 
+    insert into sys_resource (name, type, all_dept, file_secret_level, url, 
       parent_id, parent_ids, permission, 
       state)
-    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{allDept,jdbcType=TINYINT}, #{fileSecretLevel,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{parentIds,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR}, 
       #{state,jdbcType=BIT})
   </insert>
@@ -46,6 +48,12 @@
       </if>
       <if test="type != null" >
         type,
+      </if>
+      <if test="allDept != null" >
+        all_dept,
+      </if>
+      <if test="fileSecretLevel != null" >
+        file_secret_level,
       </if>
       <if test="url != null" >
         url,
@@ -69,6 +77,12 @@
       </if>
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="allDept != null" >
+        #{allDept,jdbcType=TINYINT},
+      </if>
+      <if test="fileSecretLevel != null" >
+        #{fileSecretLevel,jdbcType=VARCHAR},
       </if>
       <if test="url != null" >
         #{url,jdbcType=VARCHAR},
@@ -96,6 +110,12 @@
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
       </if>
+      <if test="allDept != null" >
+        all_dept = #{allDept,jdbcType=TINYINT},
+      </if>
+      <if test="fileSecretLevel != null" >
+        file_secret_level = #{fileSecretLevel,jdbcType=VARCHAR},
+      </if>
       <if test="url != null" >
         url = #{url,jdbcType=VARCHAR},
       </if>
@@ -118,6 +138,8 @@
     update sys_resource
     set name = #{name,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
+      all_dept = #{allDept,jdbcType=TINYINT},
+      file_secret_level = #{fileSecretLevel,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
       parent_ids = #{parentIds,jdbcType=VARCHAR},

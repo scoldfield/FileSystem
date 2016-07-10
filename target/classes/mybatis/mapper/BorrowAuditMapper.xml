@@ -19,11 +19,12 @@
 		<result column="operator_id" property="operatorId" jdbcType="VARCHAR" />
 		<result column="operator_name" property="operatorName"
 			jdbcType="VARCHAR" />
+		<result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, file_id, dept_id, dept_name, disabled, apply_user_id, apply_user_name,
 		apply_dept_id, apply_dept_name,
-		described, apply_time, audit_time, operator_id, operator_name
+		described, apply_time, audit_time, operator_id, operator_name, return_time
 	</sql>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Long">
@@ -44,7 +45,7 @@
 		insert into sys_borrow_audit (file_id, dept_id, dept_name, disabled,
 		apply_user_id, apply_user_name, apply_dept_id,
 		apply_dept_name, described, apply_time,
-		audit_time, operator_id, operator_name
+		audit_time, operator_id, operator_name, return_time
 		)
 		values (#{fileId,jdbcType=BIGINT}, #{deptId,jdbcType=BIGINT},
 		#{deptName,jdbcType=VARCHAR}, #{disabled,jdbcType=VARCHAR},
@@ -52,7 +53,7 @@
 		#{applyDeptId,jdbcType=BIGINT},
 		#{applyDeptName,jdbcType=VARCHAR}, #{described,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP},
 		#{auditTime,jdbcType=TIMESTAMP}, #{operatorId,jdbcType=VARCHAR},
-		#{operatorName,jdbcType=VARCHAR}
+		#{operatorName,jdbcType=VARCHAR}, #{returnTime,jdbcType=TIMESTAMP}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.cmcc.filesystem.entity.BorrowAudit">
@@ -101,6 +102,9 @@
 			<if test="operatorName != null">
 				operator_name,
 			</if>
+			<if test="returnTime != null">
+				return_time,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="fileId != null">
@@ -141,6 +145,9 @@
 			</if>
 			<if test="operatorName != null">
 				#{operatorName,jdbcType=VARCHAR},
+			</if>
+			<if test="returnTime != null">
+				#{returnTime,jdbcType=TIMESTAMP},
 			</if>
 		</trim>
 	</insert>
@@ -186,6 +193,9 @@
 			<if test="operatorName != null">
 				operator_name = #{operatorName,jdbcType=VARCHAR},
 			</if>
+			<if test="returnTime != null">
+				return_time = #{returnTime,jdbcType=TIMESTAMP},
+			</if>
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>
@@ -204,6 +214,7 @@
 		audit_time = #{auditTime,jdbcType=TIMESTAMP},
 		operator_id = #{operatorId,jdbcType=VARCHAR},
 		operator_name = #{operatorName,jdbcType=VARCHAR}
+		return_time = #{returnTime,jdbcType=TIMESTAMP}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<select id="findBySelective" resultMap="BaseResultMap"
@@ -251,10 +262,17 @@
 		<if test="operatorName != null">
 			and operator_name = #{operatorName,jdbcType=VARCHAR}
 		</if>
+		<if test="returnTime != null">
+			and return_time = #{returnTime,jdbcType=TIMESTAMP}
+		</if>
 	</select>
 	<select id="findByFileId" resultMap="BaseResultMap" parameterType="java.lang.Long">
 		select * 
 		from sys_borrow_audit
-		where fileId = #{fileId, jdbcType=BIGINT}
+		where file_Id = #{fileId, jdbcType=BIGINT}
+	</select>
+	<select id="findAll" resultMap="BaseResultMap">
+		select *
+		from sys_borrow_audit
 	</select>
 </mapper>
