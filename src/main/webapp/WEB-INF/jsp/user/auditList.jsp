@@ -37,42 +37,42 @@
             </td>
         </tr>
         
-        <c:if test="${users.size()==0 }">
+        <c:if test="${userDtos.size()==0 }">
             <tr>
                 <td>
                                         没有需要激活的用户
                  </td>
             </tr>
         </c:if>
-        <c:if test="${users.size()!=0 }">
-            <c:forEach items="${users }" var="user">
+        <c:if test="${userDtos.size()!=0 }">
+            <c:forEach items="${userDtos }" var="userDto">
                 <tr>
                     <td align="center">
-                        ${user.jobId }
+                        ${userDto.jobId }
                     </td>
                     <td>
-                        ${user.name }
+                        ${userDto.name }
                     </td>
                     <td>
-                        <c:if test="${user.sex==false }">女</c:if>
-                        <c:if test="${user.sex==true }">男</c:if>
+                        <c:if test="${userDto.sex==false }">女</c:if>
+                        <c:if test="${userDto.sex==true }">男</c:if>
                         
                     </td>
                     <td>
-                        ${user.dept }
+                        ${userDto.dept }
                     </td>
                     <td>
-                        ${user.mobile }
+                        ${userDto.mobile }
                     </td>
                     <td>
-                        ${user.position }
+                        ${userDto.roleName }
                     </td>
                     <td>
-                        ${user.createTime }
+                        ${userDto.createTime }
                     </td>
                     <td align="center">
-                        <c:if test="${user.state==false }">
-                            <a href="${pageContext.request.contextPath }/userMng/userAuditPost?userId=${user.id}">激活</a>
+                        <c:if test="${userDto.state==false }">
+                            <a href="${pageContext.request.contextPath }/userMng/userAuditPost?userId=${userDto.id}">激活</a>
                         </c:if>
                             <%-- <a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}">修改&nbsp</a>
                             <a href="${pageContext.request.contextPath }/userMng/delete?userId=${user.id}">删除</a> --%>
