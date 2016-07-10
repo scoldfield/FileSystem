@@ -32,7 +32,6 @@
 			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} [%p] [%C-%M] %m%n"/>
 		</layout>
 	</appender>
-
 	<!--DEBUG信息输出-->
 	<appender name="LOG.DEBUG" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${RootPath}/logs/debug_" />
@@ -45,7 +44,6 @@
 			<param name="LevelMax" value="DEBUG" />
 		</filter>
 	</appender>
-
 	<!--INFO信息输出-->
 	<appender name="LOG.INFO" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${RootPath}/logs/info_" />
@@ -58,7 +56,6 @@
 			<param name="LevelMax" value="INFO" />
 		</filter>
 	</appender>
-
 	<!--WARN信息输出-->
 	<appender name="LOG.WARN" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${RootPath}/logs/warn_" />
@@ -71,7 +68,6 @@
 			<param name="LevelMax" value="WARN" />
 		</filter>
 	</appender>
-
 	<!--ERROR信息输出-->
 	<appender name="LOG.ERROR" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${RootPath}/logs/error_" />
@@ -84,7 +80,6 @@
 			<param name="LevelMax" value="ERROR" />
 		</filter>
 	</appender>
-
 	<!--FATAL信息-->
 	<appender name="LOG.FATAL" class="org.apache.log4j.DailyRollingFileAppender">
 		<param name="File" value="${RootPath}/logs/fatal_" />
@@ -97,6 +92,8 @@
 			<param name="LevelMax" value="FATAL" />
 		</filter>
 	</appender>
+	
+	
 	<!--自定义的日志输出器 -->
 	<logger name="org.springframework.jdbc.core" additivity="true">
 		<level value="DEBUG" />
@@ -119,6 +116,8 @@
 		<level value="DEBUG" />
 		<appender-ref ref="LOG.DEBUG" />
 	</logger>
+	
+	
 	<!-- 根日志输出器root logger -->
 	<root>
 		<priority value="info" />
