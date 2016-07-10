@@ -57,7 +57,12 @@
 					发文类型：
 				</td>
 				<td>
-					<input name="generateType" value="${fileDto.generateType }" ><br>
+					<%-- <input name="generateType" value="${fileDto.generateType }" ><br> --%>
+					<select name="generateType">
+                        <c:forEach items="${generateTypes }" var="gtt">
+                            <option value="${gtt }" <c:if test="${fileDto.generateType==gtt }">selected="selected"</c:if> >${gtt }
+                        </c:forEach>
+                    </select>
 				</td>
 			</tr>
 			<tr align="center" height="40" >
@@ -84,18 +89,15 @@
 					<input name="generatePage" value="${fileDto.generatePage }" ><br>
 				</td>
 			</tr>
-			<%-- <tr align="center" height="40" >
+			<tr align="center" height="40" >
 				<td>
-					签发日期：
+					附件：
 				</td>
 				<td>
-                    <input name="generateDateStr" value="${fileDto.generateDateStr }" class="Wdate" type="text" onClick="WdatePicker()" width='270px'>
-                    
-					<input id="d12" name="generateDate" type="text" >
-                    <img onclick="WdatePicker({el:'d12'})" src="${pageContext.request.contextPath}/static/My97DatePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle">
-                    
+					<c:if test="${fileDto.location!=null }">${fileDto.location }<br><a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id }">重新上传</a></c:if>			
+					<c:if test="${fileDto.location==null }"><a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id }">上传附件</a></c:if>
 				</td>
-			</tr> --%>
+			</tr>
 			<tr align="center" height="40" >
 				<td>
 					承办部门：
@@ -114,7 +116,12 @@
 					等级：
 				</td>
 				<td>
-					<input name="emergencyLevel" value="${fileDto.emergencyLevel }" ><br>
+					<%-- <input name="emergencyLevel" value="${fileDto.emergencyLevel }" ><br> --%>
+					<select name="emergencyLevel">
+                        <c:forEach items="${emergencyLevels }" var="el">
+                            <option value="${el }" <c:if test="${fileDto.emergencyLevel==el }">selected="selected"</c:if>  >${el }
+                        </c:forEach>
+                    </select>
 				</td>
 			</tr>
 			<tr align="center" height="40" >
@@ -122,7 +129,12 @@
 					密级：
 				</td>
 				<td>
-					<input name="secretLevel" value="${fileDto.secretLevel }" ><br>
+					<%-- <input name="secretLevel" value="${fileDto.secretLevel }" ><br> --%>
+					<select name="secretLevel">
+                        <c:forEach items="${secretLevels }" var="sl">
+                            <option value="${sl }" <c:if test="${fileDto.secretLevel==sl }">selected="selected"</c:if> >${sl }
+                        </c:forEach>
+                    </select>
 				</td>
 			</tr>
 			<tr align="center" height="40" >

@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <table border="1" align="center" width="1000">
+    <table border="1" align="center" width="95%">
         <tr>
             <td align="center">
                                                 <b>档案编号</b>
@@ -25,6 +25,9 @@
             </td>
             <td align="center">
                                                 <b>页数</b>
+            </td>
+            <td align="center">
+                                                <b>上传附件</b>
             </td>
             <td align="center">
                                                 <b>操作</b>
@@ -47,6 +50,14 @@
                 </td>
                 <td align="center">
                     ${fileDto.generatePage }
+                </td>
+                <td align="center">
+                    <c:if test="${fileDto.location==null }">	<!-- 判断附件是否上传 -->
+                    	<a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id}">上传附件</a>
+                    </c:if>
+                    <c:if test="${fileDto.location!=null }">
+                    	附件已经上传<br>${fileDto.location }
+                    </c:if>
                 </td>
                 <td align="center">
                         <a href="${pageContext.request.contextPath }/fileMng/detail?fileId=${fileDto.id}">查看详情&nbsp</a>
