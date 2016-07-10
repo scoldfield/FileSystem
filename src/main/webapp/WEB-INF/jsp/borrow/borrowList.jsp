@@ -60,7 +60,7 @@
                 </td>
                 <td>
                     <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=1">同意&nbsp</a>
-                    <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=0">不同意</a>
+                    <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=-1">不同意</a>
                 </td>
             </tr>
         </c:forEach>

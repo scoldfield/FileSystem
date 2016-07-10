@@ -82,7 +82,8 @@
                     
                 </td>
                 <td align="center">
-                        <c:if test="${fileDto.isBorrowed==true }">借阅</c:if>
+                        <c:if test="${fileDto.isBorrowed==true && fileDto.borrowerId==currnetUserId }"><a href="${pageContext.request.contextPath }/fileMng/download?fileId=${fileDto.id}">全文阅读</a></c:if>
+                        <c:if test="${fileDto.isBorrowed==true && fileDto.borrowerId==currnetUserId }"><a href="${pageContext.request.contextPath }/borrow/returnFile?fileId=${fileDto.id}">归还档案</a></c:if>
                         <c:if test="${fileDto.isBorrowed==false }"><a href="${pageContext.request.contextPath }/borrow/apply?fileId=${fileDto.id}">借阅</a></c:if>
                 </td>
             </tr>
