@@ -27,7 +27,7 @@
 			targetProject="FileSystem" type="XMLMAPPER">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
-		<table tableName="sys_register_audit" domainObjectName="RegisterAudit"
+		<table tableName="sys_log" domainObjectName="Log"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">

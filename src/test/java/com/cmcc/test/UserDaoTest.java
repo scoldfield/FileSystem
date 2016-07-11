@@ -36,7 +36,7 @@ public class UserDaoTest {
 
 	@Test
 	public void findByUsernameTest(){
-		String username = "ldd";
+		String username = "admin";
 		User user = userMapper.findByUsername(username);
 		System.out.println("+++++++++++++++++++++ user = " + user.getUsername());
 	}
