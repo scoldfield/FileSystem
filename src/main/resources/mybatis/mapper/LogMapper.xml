@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmcc.filesystem.dao.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.cmcc.filesystem.entity.Log" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="operate_id" property="operateId" jdbcType="VARCHAR" />
+    <result column="operate_username" property="operateUsername" jdbcType="VARCHAR" />
+    <result column="operate_time" property="operateTime" jdbcType="DATE" />
+    <result column="class_name" property="className" jdbcType="VARCHAR" />
+    <result column="method_name" property="methodName" jdbcType="VARCHAR" />
+    <result column="params" property="params" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, operate_id, operate_username, operate_time, class_name, method_name, params
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cmcc.filesystem.entity.Log" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_log (operate_id, operate_username, operate_time, 
+      class_name, method_name, params
+      )
+    values (#{operateId,jdbcType=VARCHAR}, #{operateUsername,jdbcType=VARCHAR}, #{operateTime,jdbcType=DATE}, 
+      #{className,jdbcType=VARCHAR}, #{methodName,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cmcc.filesystem.entity.Log" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="operateId != null" >
+        operate_id,
+      </if>
+      <if test="operateUsername != null" >
+        operate_username,
+      </if>
+      <if test="operateTime != null" >
+        operate_time,
+      </if>
+      <if test="className != null" >
+        class_name,
+      </if>
+      <if test="methodName != null" >
+        method_name,
+      </if>
+      <if test="params != null" >
+        params,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="operateId != null" >
+        #{operateId,jdbcType=VARCHAR},
+      </if>
+      <if test="operateUsername != null" >
+        #{operateUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=DATE},
+      </if>
+      <if test="className != null" >
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null" >
+        #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        #{params,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cmcc.filesystem.entity.Log" >
+    update sys_log
+    <set >
+      <if test="operateId != null" >
+        operate_id = #{operateId,jdbcType=VARCHAR},
+      </if>
+      <if test="operateUsername != null" >
+        operate_username = #{operateUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        operate_time = #{operateTime,jdbcType=DATE},
+      </if>
+      <if test="className != null" >
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="methodName != null" >
+        method_name = #{methodName,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null" >
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cmcc.filesystem.entity.Log" >
+    update sys_log
+    set operate_id = #{operateId,jdbcType=VARCHAR},
+      operate_username = #{operateUsername,jdbcType=VARCHAR},
+      operate_time = #{operateTime,jdbcType=DATE},
+      class_name = #{className,jdbcType=VARCHAR},
+      method_name = #{methodName,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

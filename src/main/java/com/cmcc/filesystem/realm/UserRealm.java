@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.cmcc.filesystem.constant.Constants;
 import com.cmcc.filesystem.credentials.MySimpleAuthenticationInfo;
+import com.cmcc.filesystem.dao.UserMapper;
 import com.cmcc.filesystem.entity.User;
 import com.cmcc.filesystem.service.IRoleService;
 import com.cmcc.filesystem.service.IUserService;
@@ -32,7 +33,7 @@ public class UserRealm extends AuthorizingRealm {
 	private Logger logger = Logger.getLogger(getClass());
 
     @Autowired
-    private IUserService userService;
+    private UserMapper userService;
     
     @Autowired
     private IRoleService roleService;
