@@ -82,6 +82,13 @@ public class Constants {
     //上传的档案的存储地址
     public static final String FILE_PATH = "Q:\\upload";
     
+    //menu和button
+    public static final String MENU = "menu";
+    public static final String BUTTON = "button";
+    
+    
+    
+    
     
 	
 	
