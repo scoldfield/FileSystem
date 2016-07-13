@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<table border="1" align="center" width="95%">
+	<table border="1" align="center" width="1800">
         <tr>
             <td align="center">
                                                 <b>姓名</b>
@@ -40,12 +40,7 @@
                     ${userDto.dept }
                 </td>
                 <td align="center">
-                    <div style="width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${userDto.resourceNames }">
-                        <%-- <c:forEach items="${userDto.resourceNames }" var="resName">
-                            ${resName }
-                        </c:forEach> --%>
-                        ${userDto.resourceNames }
-                    </div>
+                    ${userDto.resourceIds }
                 </td>
                 <td align="center">
                     <c:if test="${userDto.roleName==null }"><a href="${pageContext.request.contextPath }/permMng/addRole?userId=${userDto.id }">去分配角色</a></c:if>

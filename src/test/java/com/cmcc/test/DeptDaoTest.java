@@ -34,10 +34,4 @@ public class DeptDaoTest {
 		System.out.println("num = " + num);
 	}
 	
-	@Test
-	public void findAllTest(){
-	    List<Dept> depts = deptMapper.findAll();
-	    System.out.println("depts.size() = " + depts.size());
-	}
-	
 }

@@ -51,7 +51,6 @@ public class UserMngController {
     
     @RequestMapping("/list")
     public String list(Model model) {
-        //找出所有用户，包括无效(未审核)用户，显示的时候会标记那些为无效用户
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         return "user/list";

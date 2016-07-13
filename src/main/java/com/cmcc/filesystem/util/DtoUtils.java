@@ -297,13 +297,6 @@ public class DtoUtils {
         }
         roleDto.setResources(resources);
         
-        //设置resourcenames
-        List<String> resourceNames = new ArrayList<String>();
-        for(Resource r : resources) {
-            resourceNames.add(r.getName());
-        }
-        roleDto.setResourceNames(resourceNames);
-        
         //可选的resourceIds设置
         String allResourceIds = Constants.ROLE_RESOURCEIDS.get(role.getId() + "");
         String appendResourceIds = getAppendResourceIds(allResourceIds, role.getResourceIds());

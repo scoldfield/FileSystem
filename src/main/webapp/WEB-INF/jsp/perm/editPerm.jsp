@@ -10,7 +10,7 @@
 <body>
 
 <form action="${pageContext.request.contextPath}/permMng/editPermPost" method="post">
-    <table border="1" align="center" width="95%">
+    <table border="1" align="center" width="1800">
         <tr>
             <td align="center">
                                                 <b>角色名</b>
@@ -33,17 +33,14 @@
                     ${roleDto.name }
                 </td>
                 <td align="center">
-                    <div style="width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${roleDto.resourceNames }">
-                        ${roleDto.resourceNames }
-                    </div>
-                    <%-- <c:forEach items="${roleDto.resources }" var="resource">
+                    <c:forEach items="${roleDto.resources }" var="resource">
                         ${resource.name }<br>
-                    </c:forEach> --%>
+                    </c:forEach>
                 </td>
                 <td align="center">
                     <c:if test="${roleDto.appendResources!=null }">
                         <c:forEach items="${roleDto.appendResources }" var="appendResource">
-                            <input name="appendResourceIds" type="checkbox" value="${appendResource.id }">${appendResource.name}<br>
+                            <input name="appendResourceIds" type="checkbox" value="${appendResource.id }">${appendResource.name}
                         </c:forEach>
                     </c:if>
                     <c:if test="${roleDto.appendResources==null }">

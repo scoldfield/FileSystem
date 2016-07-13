@@ -82,9 +82,5 @@ public class ResourceServiceImpl implements IResourceService {
 		
 		return resources;
 	}
-	
-	public List<Resource> findAll() {
-	    return resourceMapper.findAll();
-	}
 
 }

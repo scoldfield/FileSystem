@@ -8,27 +8,10 @@
 </head>
 <body>
 	<form action="${pageContext.request.contextPath}/fileMng/uploadPost" enctype="multipart/form-data" method="post">
-        <table border="1" align="center" width="95%">
-            <tr>
-                <td align="center">
-                                                    上传文件：
-                </td>
-                <td>
-                    <input type="file" name="file1"><br/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                    <input type="submit" value="提交"><br/>
-                </td>
-            </tr>
-        </table>
 		<input type="hidden" name="fileId" value="${fileId }"><br/>
 		<!-- <input type="hidden" name="fileId" value="1"><br/> -->
-		
-		
+		上传文件：<input type="file" name="file1"><br/>
+		<input type="submit" value="提交">
 	</form>
 </body>
 </html>

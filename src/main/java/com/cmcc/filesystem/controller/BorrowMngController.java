@@ -3,9 +3,7 @@ package com.cmcc.filesystem.controller;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -80,7 +78,7 @@ public class BorrowMngController {
     	List<Resource> resources = resourceService.getUserResources();
     	
     	//根据权限中的"是否所有部门"、"密级"两个字段进行筛选
-    	Set<File> files = new HashSet<File>();
+    	List<File> files = new ArrayList<File>();
     	for(Resource r : resources){
     		String secretLevel = r.getFileSecretLevel();
     		Boolean allDept = r.getAllDept();	//能否查看所有部门
@@ -104,25 +102,7 @@ public class BorrowMngController {
     		file.setAuditResult(Constants.RECEIVE_AUDIT_RESULT1);	//"接收审核"通过
     		file.setState(Boolean.TRUE);	//设置档案未被删除
     		List<File> filesTmp = fileService.findLikeSelective(file);
-    		
-    		//合并两个List
-    		if(files.size() > 0) {
-    		    for(File f : filesTmp) {
-    		        boolean flag = false;
-    		        for(File ff : files) {
-    		            if(f.getId() != null && ff.getId() != null && (f.getId() == ff.getId())) {
-    		                flag = true;  //重复
-    		                break;
-    		            }
-    		        }
-    		        
-    		        if(flag == false) {
-    		            files.add(f);
-    		        }
-    		    }
-    		} else {
-    		    files.addAll(filesTmp);
-    		}
+    		files.addAll(filesTmp);
     	}
     	
         //删除还未"归档"的档案
@@ -369,7 +349,7 @@ public class BorrowMngController {
     		}
     	}
     	
-    	return "borrow/returnFile";
+    	return null;
     }
     
     /*

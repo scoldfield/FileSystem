@@ -1,7 +1,5 @@
 package com.cmcc.filesystem.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,11 +41,6 @@ public class LogServiceImpl implements ILogService {
     public int updateByPrimaryKey(Log record) {
         // TODO Auto-generated method stub
         return logMapper.updateByPrimaryKey(record);
-    }
-
-    public List<Log> findAll() {
-        // TODO Auto-generated method stub
-        return logMapper.findAll();
     }
 
 }

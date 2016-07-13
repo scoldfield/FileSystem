@@ -34,14 +34,6 @@
             </td>
         </tr>
         
-        <c:if test="${fileDtos.size()==0 }">
-           <tr>
-                <td>
-                                     没有需要审核的档案
-             </td>
-           </tr>
-        </c:if>
-        
         <c:forEach items="${fileDtos }" var="fileDto">
             <tr>
                 <td>
