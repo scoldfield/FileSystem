@@ -1,37 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<decorators defaultdir="/WEB-INF/layout">
+<decorators defaultdir="/decorators">
 	<excludes>
-		<pattern>*/static/*</pattern>
-		<pattern>*.html*</pattern>
-		<pattern>*/login</pattern>
-		<pattern>*/chooseRole</pattern>
-		<pattern>*/securityCode*</pattern>
-		<pattern>*/appService/*</pattern>
-		<pattern>*/contacts/*</pattern>
-		<pattern>*/notice/*</pattern>
-		<pattern>*/examservice/*</pattern>
-		<pattern>*/attendance/*</pattern>
-		<pattern>*/homework/*</pattern>
-		<pattern>*/askforleave/*</pattern>
-		<pattern>*/upload/*</pattern>
-		<pattern>*/portrait/*</pattern>
-		<pattern>*/classring/*</pattern>
-		<pattern>*/gallery/*</pattern>
-		<pattern>*/services/*</pattern>
-		<pattern>*/homeManager/*</pattern>
-		<pattern>*/appMonitor/*</pattern>
-		<pattern>*/appAttendancetime/*</pattern>
-		<pattern>*/recipes/*</pattern>
-		<pattern>*/appPoints/*</pattern>
-		<pattern>*/appRedlist/*</pattern>
-		<pattern>*/assessment/*</pattern>
-		<pattern>*/topic/*</pattern>
-		<pattern>*/AttendanceWatch/*</pattern>
-		<pattern>*/activeconfigs/*</pattern>
-		<pattern>/teacher/download/*</pattern>
+		<!-- <pattern>*/static/*</pattern> -->
+		<pattern>*/login*</pattern>
  	</excludes>
-	<decorator name="platformMain" page="platform/main.jsp">
-		<pattern>/platform/*</pattern>
+	<decorator name="style" page="style.jsp">
+		<pattern>/*</pattern>
 	</decorator>
 	<decorator name="teacherMain" page="teacher/main.jsp">
 		<pattern>/teacher/*</pattern>

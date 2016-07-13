@@ -147,4 +147,8 @@
       state = #{state,jdbcType=BIT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findAll" resultMap="BaseResultMap">
+  	select *
+  	from sys_resource
+  </select>
 </mapper>

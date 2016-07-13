@@ -8,14 +8,14 @@
 </head>
 <body>
 	<center>
-		<table border="1" width="920" cellspacing="0" cellpadding="0" bgcolor="white">
+		<table border="1" width="95%" cellspacing="0" cellpadding="0" bgcolor="white">
 			<tr>
 				<td colspan="2">
 					<jsp:include page="top.jsp" />
 				</td>
 			</tr>
 			<tr>
-				<td width="230" valign="top" align="center">
+				<td width="15%" valign="top" align="center">
 					<jsp:include page="left.jsp"/>
 				</td>
 				<td width="690" height="400" align="center"valign="top" bgcolor="#FFFFFF">

@@ -10,7 +10,7 @@
 <body>
 
 <form action="${pageContext.request.contextPath}/permMng/addPost" method="post">
-    <table border="1" align="center" width="1000">
+    <table border="1" align="center" width="95%">
         <tr>
             <td align="center">
                                                 <b>姓名</b>

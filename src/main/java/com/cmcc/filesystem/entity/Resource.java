@@ -24,7 +24,7 @@ public class Resource implements Serializable {
     private Boolean state;
 
     private static final long serialVersionUID = 1L;
-
+    
     public Boolean getAllDept() {
 		return allDept;
 	}
