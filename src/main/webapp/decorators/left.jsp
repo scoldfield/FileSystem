@@ -136,11 +136,12 @@
         <!-- 代码部分begin -->
         <div id="firstpane" class="menu_list">
             <shiro:hasPermission name="user:mngt">
-                <h3 class="menu_head current"><a href="${pageContext.request.contextPath }/userMng/list">用户管理</a></h3>
+                <h3 class="menu_head current">用户管理</h3>
                 <div style="display: none" class="menu_body">
-                    <!-- <a href="#">科学技术哲学</a>
-                    <a href="#">伦理学</a>
-                    <a href="#">中国哲学</a> -->
+                    <a href="${pageContext.request.contextPath }/userMng/list">用户列表</a>
+                    <shiro:hasPermission name="user:audit">
+                        <a href="${pageContext.request.contextPath }/userMng/userAudit">用户审核</a>
+                    </shiro:hasPermission>
                 </div>
             </shiro:hasPermission>
      
@@ -156,26 +157,25 @@
             <shiro:hasPermission name="perm:mngt">
                 <h3 class="menu_head">权限管理</h3>
                 <div style="display: none" class="menu_body">
-                    <a href="#">马克思主义基本原理</a>
-                    <a href="#">马克思主义中国化研究</a>
-                    <a href="#">国外马克思主义研究</a>
+                    <a href="${pageContext.request.contextPath }/permMng/list">用户-角色</a>
+                    <a href="${pageContext.request.contextPath }/permMng/listRoles">角色-权限</a>
                 </div>
             </shiro:hasPermission>
             
             <shiro:hasPermission name="sys:mngt">
-                <h3 class="menu_head">系统日志</h3>
-                <div style="display: none" class="menu_body">
+                <h3 class="menu_head"><a href="${pageContext.request.contextPath }/log/list">系统日志</a></h3>
+                <!-- <div style="display: none" class="menu_body">
                     <a href="#">体育人文社会学</a>
                     <a href="#">发展与教育心理学</a>
                     <a href="#">课程与教学论</a>
-                </div>
+                </div> -->
             </shiro:hasPermission>
             
             <shiro:hasPermission name="file:mngt">
                 <h3 class="menu_head">档案管理</h3>
                 <div style="display: none" class="menu_body">
                     <shiro:hasPermission name="file:detail">
-                        <a href="#">档案信息</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/list">档案信息</a>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="file:categ">
                         <a href="#">档案分类</a>
@@ -190,13 +190,13 @@
                 <h3 class="menu_head">借阅管理</h3>
                 <div style="display: none" class="menu_body">
                     <shiro:hasPermission name="borrow:list">
-                        <a href="#">查询</a>
+                        <a href="${pageContext.request.contextPath }/borrow/list">查询</a>
                     </shiro:hasPermission>
-                    <shiro:hasPermission name="borrow:borrow">
+                    <%-- <shiro:hasPermission name="borrow:borrow">
                         <a href="#">借阅</a>
-                    </shiro:hasPermission>
+                    </shiro:hasPermission> --%>
                     <shiro:hasPermission name="borrow:record">
-                        <a href="#">借阅记录</a>
+                        <a href="${pageContext.request.contextPath }/borrow/borrowRecord">借阅记录</a>
                     </shiro:hasPermission>
                 </div>
             </shiro:hasPermission>
@@ -205,16 +205,16 @@
                 <h3 class="menu_head">业务管理</h3>
                 <div style="display: none" class="menu_body">
                     <shiro:hasPermission name="biz:recv">
-                        <a href="#">接收档案</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/add">接收档案</a>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="biz:recevAudit">
-                        <a href="#">接收档案审核</a>
+                        <a href="${pageContext.request.contextPath }/biz/receiveAudit">接收档案审核</a>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="biz:borrowAudit">
-                        <a href="#">借阅档案审核</a>
+                        <a href="${pageContext.request.contextPath }/borrow/borrowList">借阅档案审核</a>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="biz:record">
-                        <a href="#">信息统计下载</a>
+                        <a href="${pageContext.request.contextPath }/biz/fileTable">信息统计下载</a>
                     </shiro:hasPermission>
                 </div>
             </shiro:hasPermission>

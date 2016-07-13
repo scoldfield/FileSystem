@@ -1,5 +1,7 @@
 package com.cmcc.filesystem.dao;
 
+import java.util.List;
+
 import com.cmcc.filesystem.entity.Log;
 
 public interface LogMapper {
@@ -14,4 +16,6 @@ public interface LogMapper {
     int updateByPrimaryKeySelective(Log record);
 
     int updateByPrimaryKey(Log record);
+    
+    List<Log> findAll();
 }

@@ -1,5 +1,7 @@
 package com.cmcc.filesystem.dao;
 
+import java.util.List;
+
 import com.cmcc.filesystem.entity.Resource;
 
 public interface ResourceMapper {
@@ -14,4 +16,6 @@ public interface ResourceMapper {
     int updateByPrimaryKeySelective(Resource record);
 
     int updateByPrimaryKey(Resource record);
+    
+    List<Resource> findAll();
 }

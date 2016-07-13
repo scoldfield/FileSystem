@@ -102,8 +102,9 @@
             </tr>
             
 			<tr align="center" height="40" >
+                <td></td>
 				<td>
-					<input type="submit" value="确定">
+					<input type="submit" value="返回">
 				</td>
 				
 			</tr>
