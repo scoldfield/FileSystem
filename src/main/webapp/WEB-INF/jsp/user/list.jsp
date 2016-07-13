@@ -9,9 +9,7 @@
 </head>
 <body>
 
-    <a href="${pageContext.request.contextPath }/userMng/add">新增</a>
-
-    <table border="1" align="center" width="95%">
+    <table border="1" align="center" width="1000">
         <tr>
             <td align="center">
                                                 <b>用户编号</b>
@@ -47,14 +45,9 @@
                     ${user.dept }
                 </td>
                 <td align="center">
-                    <c:if test="${user.state==false }">
-                                                            该用户尚未审核，请联系管理员
-                    </c:if>
-                    <c:if test="${user.state==true }">
                         <a href="${pageContext.request.contextPath }/userMng/detail?userId=${user.id}">查看详情&nbsp</a>
                         <a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}">修改&nbsp</a>
                         <a href="${pageContext.request.contextPath }/userMng/delete?userId=${user.id}">删除</a>
-                    </c:if>
                 </td>
             </tr>
         </c:forEach>

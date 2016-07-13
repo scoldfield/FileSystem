@@ -2,7 +2,6 @@ package com.cmcc.filesystem.service;
 
 import java.util.List;
 
-import com.cmcc.filesystem.entity.Resource;
 import com.cmcc.filesystem.entity.User;
 
 public interface IUserService {
@@ -23,12 +22,4 @@ public interface IUserService {
     List<User> findAll();
     
     List<User> findBySelective(User user);
-    
-    User getCurrentUser();
-    
-    String getResourceIds(User user);
-    
-    List<Resource> getResources(User user);
-    
-    List<String> getPermissions(User user);
 }

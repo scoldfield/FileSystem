@@ -22,19 +22,10 @@ public class RoleDto {
 
     //新增的字段
     private List<Resource> resources;
-    private List<String> resourceNames;
     private String appendResourceIds;       //可选的resourceIds
     private List<Resource> appendResources; //可选的resources
     
     
-    public List<String> getResourceNames() {
-        return resourceNames;
-    }
-
-    public void setResourceNames(List<String> resourceNames) {
-        this.resourceNames = resourceNames;
-    }
-
     public String getAppendResourceIds() {
         return appendResourceIds;
     }

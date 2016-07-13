@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <table border="1" align="center" width="95%">
+    <table border="1" align="center" width="1800">
         <tr>
             <td align="center">
                                                 <b>角色名</b>
@@ -28,14 +28,9 @@
                     ${roleDto.name }
                 </td>
                 <td align="center">
-                    <%-- <c:forEach items="${roleDto.resources }" var="resource">
-                        <div style="width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${resource.name }">
-                            ${resource.name }
-                        </div>
-                    </c:forEach> --%>
-                    <div style="width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${roleDto.resourceNames }">
-                        ${roleDto.resourceNames }
-                    </div>
+                    <c:forEach items="${roleDto.resources }" var="resource">
+                        ${resource.name }<br>
+                    </c:forEach>
                 </td>
                 <td align="center">
                     <a href="${pageContext.request.contextPath }/permMng/editPerm?roleId=${roleDto.id}">修改</a>
