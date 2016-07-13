@@ -10,7 +10,7 @@
 <body>
 
 <form action="${pageContext.request.contextPath}/permMng/editPost" method="post">
-    <table border="1" align="center" width="1000">
+    <table border="1" align="center" width="95%">
         <tr>
             <td align="center">
                                                 <b>姓名</b>
@@ -48,7 +48,7 @@
              <td>
                 <select name="deptId">
                     <c:forEach items="${depts }" var="dept">
-                        <option value="${dept.id }" >${dept.deptName }</option>
+                        <option value="${dept.id }" <c:if test="${userDto.deptId==dept.id }">selected="selected"</c:if>>${dept.deptName }</option>
                     </c:forEach>
                 </select>
             </td>

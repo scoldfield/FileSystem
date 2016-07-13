@@ -20,18 +20,24 @@ import com.cmcc.filesystem.entity.User;
 //@TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 //@Transactional
 public class DeptDaoTest {
-	
-	@Autowired
-	private DeptMapper deptMapper;
-	
-	@Test
-	public void insertTest(){
-		Dept dept = new Dept();
-		dept.setDeptName("呵呵");
-		dept.setDeptPhone("1234");
-		dept.setPersonNum(10l);
-		int num = deptMapper.insert(dept);
-		System.out.println("num = " + num);
-	}
-	
+    
+    @Autowired
+    private DeptMapper deptMapper;
+    
+    @Test
+    public void insertTest(){
+        Dept dept = new Dept();
+        dept.setDeptName("呵呵");
+        dept.setDeptPhone("1234");
+        dept.setPersonNum(10l);
+        int num = deptMapper.insert(dept);
+        System.out.println("num = " + num);
+    }
+    
+    @Test
+    public void findAllTest(){
+        List<Dept> depts = deptMapper.findAll();
+        System.out.println("depts.size() = " + depts.size());
+    }
+    
 }

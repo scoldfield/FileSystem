@@ -167,6 +167,8 @@ public class PermMngController {
             }
         }
         
+        List<Dept> depts = deptService.findAll();
+        model.addAttribute("depts", depts);
         model.addAttribute("userDto", userDto);
         model.addAttribute("roles", roles);
         
@@ -236,7 +238,7 @@ public class PermMngController {
         
         roleService.updateByPrimaryKeySelective(role);
         
-        return "perm/roleList";
+        return "redirect:listRoles";
     }
     
     

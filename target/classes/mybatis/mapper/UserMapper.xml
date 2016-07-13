@@ -233,7 +233,6 @@
 		select
 		<include refid="Base_Column_List" />
 		from sys_user
-		where state = 1
 	</select>
 	<select id="findBySelective" parameterType="com.cmcc.filesystem.entity.User" resultMap="BaseResultMap">
 		select * 

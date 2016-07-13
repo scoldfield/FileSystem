@@ -82,7 +82,8 @@
   <select id="findAll" resultMap="BaseResultMap" >
     select 
     <include refid="Base_Column_List" />
-    from sys_dept
+    from sys_dept 
+    where id!=9
   </select>
   <select id="findByDeptName" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

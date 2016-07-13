@@ -34,6 +34,15 @@
                 <b>操作</b>
             </td>
         </tr>
+        
+        <c:if test="${borrowAuditDtoList.size()==0 }">
+            <tr>
+                <td>
+                    没有档案需要审核
+                </td>
+            </tr>
+        </c:if>
+        
         <c:forEach items="${borrowAuditDtoList }" var="borrowAuditDto">
             <tr align="center">
                 <td>

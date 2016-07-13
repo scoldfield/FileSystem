@@ -52,15 +52,25 @@ public class File implements Serializable {
 
     private String location;
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof File) {
+            File f = (File)obj;
+            return this.id == f.id;
+        }
+        
+        return false;
+    }
+
     public String getLocation() {
-		return location;
-	}
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public String getIssueUserName() {
+    public String getIssueUserName() {
         return issueUserName;
     }
 

@@ -24,24 +24,24 @@ public class Resource implements Serializable {
     private Boolean state;
 
     private static final long serialVersionUID = 1L;
-
+    
     public Boolean getAllDept() {
-		return allDept;
-	}
+        return allDept;
+    }
 
-	public void setAllDept(Boolean allDept) {
-		this.allDept = allDept;
-	}
+    public void setAllDept(Boolean allDept) {
+        this.allDept = allDept;
+    }
 
-	public String getFileSecretLevel() {
-		return fileSecretLevel;
-	}
+    public String getFileSecretLevel() {
+        return fileSecretLevel;
+    }
 
-	public void setFileSecretLevel(String fileSecretLevel) {
-		this.fileSecretLevel = fileSecretLevel;
-	}
+    public void setFileSecretLevel(String fileSecretLevel) {
+        this.fileSecretLevel = fileSecretLevel;
+    }
 
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

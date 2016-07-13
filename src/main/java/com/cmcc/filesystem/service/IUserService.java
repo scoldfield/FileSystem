@@ -2,10 +2,11 @@ package com.cmcc.filesystem.service;
 
 import java.util.List;
 
+import com.cmcc.filesystem.entity.Resource;
 import com.cmcc.filesystem.entity.User;
 
 public interface IUserService {
-	int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(User record);
 
@@ -22,4 +23,12 @@ public interface IUserService {
     List<User> findAll();
     
     List<User> findBySelective(User user);
+    
+    User getCurrentUser();
+    
+    String getResourceIds(User user);
+    
+    List<Resource> getResources(User user);
+    
+    List<String> getPermissions(User user);
 }

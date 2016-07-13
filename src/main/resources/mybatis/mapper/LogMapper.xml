@@ -114,4 +114,8 @@
       params = #{params,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="findAll" resultMap="BaseResultMap">
+  	select *
+  	from sys_log
+  </select>
 </mapper>

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-		<table border="1" width="95%" cellspacing="0" cellpadding="0" bgcolor="white">
+		<%-- <table border="1" width="95%" cellspacing="0" cellpadding="0" bgcolor="white">
 			<tr>
 				<td colspan="2">
 					<jsp:include page="top.jsp" />
@@ -27,7 +27,7 @@
 					<%@include file="end.jsp" %>
 				</td>
 			</tr>
-		</table>
+		</table> --%>
 	</center>
 
 </body>
