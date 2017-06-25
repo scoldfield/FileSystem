@@ -20,10 +20,10 @@ public class Constants {
 	public static final Long PRIVILEDGE_MANAGER_ROLEID = 4l;
 	
 	//发文类型generate_type
-	public static final String GENERATE_TYPES = "上级,平级,下级";
+	public static final String GENERATE_TYPES = "党委,政府,人大,政协,军分区";
 	
 	//等级（特提、特急、加急、平级）
-	public static final String EMERGENCY_LEVEL = "特急,特急,加急,平急";
+	public static final String EMERGENCY_LEVEL = "特提,特急,加急,平急";
 	
 	//密级（绝密、机密、秘密、内部、普通）
     public static final String SECRET_LEVEL = "绝密,机密,秘密,内部,普通";

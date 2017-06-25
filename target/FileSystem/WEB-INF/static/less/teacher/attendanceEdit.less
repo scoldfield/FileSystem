@@ -1,0 +1,36 @@
+@import "../pub/teacher_global";
+@import "../lib/component-function";
+@import "../module/m-selectui";
+@import "../plug/ymPromptTeacher";
+.m-attendanceEdit{ margin-bottom:50px; padding-bottom:80px;
+    .tableContent{ width:720px; }
+    td{ padding:8px 2px; line-height:30px; vertical-align:top; }
+    .ac-time{
+        li{ float:left; height:30px; line-height:30px; float:left;
+            &.pr{ padding-right:50px; }
+        }
+        .u-gipt-date{ margin-left:20px; }
+    }
+    .checkbox-ui{
+        b{ margin-top:8px; margin-right:5px; }
+    }
+    .m-selectui-timeHours{ width:90px;
+        .intotext{ width:74px; }
+        ul.optionwarp{ width:164px;
+            li{ float:left; width:15px; }
+        }
+    }
+    .m-selectui-timeMin{ width:90px;
+        .intotext{ width:74px; }
+        ul.optionwarp{ width:328px;
+            li{ float:left; width:15px; }
+        }
+    }
+    .timetips{ display:inline-block; float:left; padding-right:20px; padding-left:5px; }
+    .errorTipswrap{ width:520px; min-height:30px; padding:8px 8px 8px 86px; }
+    .errorTips{ display:none; border:1px solid #EBAB97; padding:0 10px; color:#E03601; line-height:27px; }
+    .btn-wrap{ text-indent:86px }
+}
+.addreceiveList{ width:560px;
+    .checkbox-ui{ float:left; margin-right:10px; }
+}

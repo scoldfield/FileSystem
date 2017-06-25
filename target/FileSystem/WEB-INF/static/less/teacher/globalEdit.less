@@ -1,0 +1,190 @@
+@import "../pub/teacher_global";
+@import "../lib/component-function";
+@import "../module/m-search";
+@import "../module/m-teacherNav";
+@import "../plug/ymPromptTeacher";
+@import "../module/m-teacherTable";
+@import "../plug/simplePagination";
+@import "../module/m-selectui";
+.m-gEditHead{
+	height:32px; line-height:32px; padding:20px 20px; border-bottom:1px dashed #DDD;
+	h2{ margin:0 0 0 30px; padding:0; font-weight:normal; font-size:16px; }
+}
+.g-gEdit{ width:700px; padding:20px; }
+.m-gEdit{
+	li{ padding:10px 0; }
+	.labelName{ float:left; width:75px; height:30px; line-height:30px;
+		&.labelName-short{ width:50px; }
+	}
+
+	/* 输入框外壳设置  */
+	.formDiv{ float:left; width:585px; padding:5px; border:1px solid #DDD; background:#FFF;
+		&.formDiv-noborder{ border:none; padding:0; background:none; }
+		&.formDiv-Recipient{ padding:0; }
+		&.formDiv-inputsp{
+		}
+		.u-globalIpt{ width:500px; height:20px; line-height:20px; background:none; padding-right:4px; border:none; border-right:1px solid #DDD; }
+		.green{ color:#0BAE15; font-weight:700; }
+		.enterTips{ float:left; margin:5px; height:20px; line-height:20px; color:#999; .userSelect(); cursor:pointer }
+		.formCount{ float:left; width:64px; line-height:20px; text-align:center; }
+		.textenter{ display:block; width:580px; height:120px; line-height:20px; border:none; background:none; resize:none; border-bottom:1px dashed #DDD; }
+		.textCounter{ height:36px; line-height:36px; text-align:right; padding-right:10px; }
+		.name-unit{ float:left; background-color:#F1F1F1; padding:2px 8px; margin:5px; }
+	}
+
+	.addAccessoryBtn{
+		a{ display:block; display:none \9; display:block \9 \0; width:68px; height:30px; margin:2px 10px; line-height:30px; padding-left:24px; color:#666; &:extend(.icon-sprite-teacher-y);
+			&:hover{ color:#0BAE15 }
+		}
+		.addImg{ background-position:-4px -498px; }
+		.addOther{ background-position:-4px -542px; }
+		.uploadCom{ display:none; display:block \9; display:none \9 \0; margin:10px;; }
+	}
+
+	.AccessoryList{
+		li{ position:relative; display:inline-block; float:left; padding:2px 8px 2px 5px; margin:5px; font-size:12px; color:#0076A9; cursor:pointer;
+			.close{ position:absolute; right:-7px; top:-7px; display:none; width:13px; height:13px; border-radius:13px;
+				background-color:#999;&:extend(.icon-sprite-teacher-y); background-position:-8px -581px;
+				&:hover{ background-color:#FF5D21; }
+			}
+			.showImgContainer{ display:none; position:absolute; left:0; top:23px; max-width:100px; max-height:100px; overflow:hidden; border:1px solid #DDD; padding:5px; background-color:#FFF; text-align:center;
+				img{ display:inline-block; max-width:100px; max-height:100px; }
+			}
+
+			&:hover{ background-color:#DDD;
+				.close{ display:block; }
+				.showImgContainer{ display:block; }
+			}
+		}
+	}
+
+	/* 定时多选 */
+	.checkbox-ui{ margin-right:3px; }
+	.checkbox-ui-caogao,
+	.checkbox-ui-dingshi{ margin-top:5px;
+		b{ margin-top:4px; margin-right:5px; }
+	}
+	.checkbox-ui-caogao{ margin-right:45px; }
+
+	.tips{ width:100px; }
+	.submitBtn{ padding:5px 75px;
+		input{ float:left; margin-right:15px; }
+	}
+
+	/* 考试拓展  */
+	.examLayoutHalf-a{ width:394px; }
+	.examLayoutHalf-b{ width:280px; }
+
+	.checkwrap{ float:left; height:24px; line-height:24px; margin-right:30px; padding-top:5px;
+		b{ margin-right:6px; margin-top:5px; }
+	}
+	.ex-errotips{ padding:5px 10px; border:1px solid #FFC99A; background-color:#FCF0E4; }
+	/* *** 红花榜样式 拓展** */
+	&.m-gEdit-redList{ width:720px;
+		.labelName{ width:120px; text-align:right; padding-right:5px; }
+		.formDiv{ width:592px; overflow:hidden;
+			&.wtxt{ width:582px; }
+			&.formDiv-ovv{ overflow:visible }
+		}
+		.checkbox-ui-rdsent{
+			b{ margin-top:3px; margin-right:5px; }
+		}
+		.submitBtn{ padding-left:125px; }
+	}
+}
+/* * 红花榜 表扬内容模块 * */
+.m-redItems{ width:602px;
+	span{ display:none; position:absolute; top:0; left:0; width:76px; height:76px; }
+	h3{ position:absolute; bottom:-30px; width:100%; margin:0; line-height:27px; text-align:center; color:#FFF; font-weight:normal; font-size:12px; background-color:#000 \9; background-color:rgba(0, 0, 0, 0.3); }
+	li{ display:block; position:relative; float:left; width:76px; height:76px; margin-right:10px; margin-bottom:10px; padding:0; overflow:hidden; cursor:pointer;
+		&.radd{ .boxsizing(); border:1px solid #DDD; background:url(../../images/reditem/radd.jpg) no-repeat; }
+		&.has{
+			span{ display:block; background:url(../../images/reditem/has.png) 22px 22px no-repeat; }
+		}
+		&:hover{
+			h3{ display:block; bottom:0; }
+			.delete{ display:block; }
+		}
+		.delete{ display:none; position:absolute; top:2px; right:2px; width:15px; height:15px; border-radius:12px; background-color:#BA000C; &:extend(.icon-sprite-teacher-y); background-position:-7px -580px; }
+	}
+
+}
+.g-recipientContainer{ position:absolute; width:100%; top:55px; bottom:65px;
+	&.g-recipientContainer-redList{ top:5px; }
+}
+.g-RecipientDeal{ position:absolute; bottom:0; width:100%; height:35px; padding:15px 0; text-align:center; border-top:1px dotted #DDD }
+.g-selectRecipient{ position:fixed; z-index:1300; top:40px; bottom:40px; width:100%;
+	.g-selectRecipientWrap{ position:relative; width:1000px; height:100%; border:3px solid @topColor; .boxsizing(); background-color:#FFF; }
+}
+.m-selectRecipient{
+	.header{ background-color:#FAFAFA; }
+	.m-teacherNav{ width:50%; border-bottom:none }
+	.m-search{ width:25%; margin-top:10px; margin-right:10px; background-color:#FFF;
+		.btn{ width:36px; }
+	}
+	.selectContent{ position:absolute; top:0; bottom:0; width:100%; padding:5px 10px; .boxsizing(); overflow:auto; background-color:#FFF; }
+	.checkbox-ui{ float:left; height:18px; line-height:18px; margin:2px 0; cursor:pointer; .userSelect();
+		b{ margin-top:2px; margin-right:5px; background-color:#FFF; }
+	}
+	.checkbox-ui{
+	}
+	.selectRecipient-all{ padding:10px 13px; }
+	.selectRecipientWrap{ margin:10px 0; padding:5px; background-color:#FFF; }
+	.selectRecipient-grade{ padding:10px 8px; border-bottom:1px solid #DDD; font-weight:bold; color:#0F9A4D }
+
+	.selectRecipient-class{ padding:10px 0;
+		ul{ }
+		li{ float:left; padding:2px 5px 2px 8px;
+			&.active{ background-color:#D7FDCF;
+				a{ background-position:-5px -605px; }
+			}
+		}
+		a{ display:block; float:left; width:18px; height:18px; &:extend(.icon-sprite-teacher-y); background-position:-5px -625px; }
+	}
+	.selectRecipient-student{
+		ul{ border:1px dashed #CCC; padding:10px; }
+		li{ position:relative; float:left; margin:0 15px 0 0;
+			.tips-hover{ display:none; position:absolute; top:21px; left:0; z-index:2; border:1px solid #DDD; box-shadow:2px 2px 4px #999; background-color:#FFF; padding:1px 5px; font-size:12px; }
+			&:hover{
+				.tips-hover{ display:block; }
+			}
+		}
+	}
+	/* 红花榜拓展 */
+	.selectRecipient-classSingle{ margin-bottom:10px; }
+	.selectRecipient-classTitle{ padding:10px 8px; color:#0F9A4D;
+		a{ display:block; float:left; width:18px; height:18px; margin-left:10px; &:extend(.icon-sprite-teacher-y); background-position:-5px -625px; #transitionFunction(all, 0.3s);
+			&.active{ background-position:-5px -605px; }
+		}
+	}
+	/* 关闭 */
+	.closeRecipient{ display:block; position:absolute; right:-27px; top:-3px; width:24px; height:24px; background-color:#0F9A4D; &:extend(.icon-sprite-teacher-y); background-position:-2px -576px; text-indent:-999px; overflow:hidden; }
+}
+/*  考试/作业科目 */
+.m-selectui-examCourse,
+.m-selectui-homeWorkCourse{ width:277px;
+	.intotext{ width:263px; }
+	ul.optionwarp{ width:277px; padding-bottom:5px;
+		li{ float:left; width:auto; padding:0 10px; margin:5px 0 0 5px; border:1px dotted #DDD }
+	}
+}
+.m-selectui-examType{ width:227px;
+	.intotext{ width:213px; }
+	ul.optionwarp{ width:227px; padding-bottom:5px;
+		li{ float:left; width:auto; padding:0 10px; margin:5px 0 0 5px; border:1px dotted #DDD }
+	}
+}
+.m-selectui-timeHours{ width:32px; height:30px; height:30px; margin:0 5px;
+	input.intotext{ width:18px; height:22px; text-align:center; }
+	ul.optionwarp{ width:164px;
+		li{ float:left; width:15px; }
+	}
+}
+.m-selectui-timeMin{ width:32px; height:30px; margin:0 5px;
+	input.intotext{ width:18px; height:22px; text-align:center; }
+	ul.optionwarp{ width:328px;
+		li{ float:left; width:15px; }
+	}
+}
+.ex-timetips{ display:inline-block; height:30px; line-height:30px; }
+.u-gipt-addRedItem{ width:235px; font-size:14px; }

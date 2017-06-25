@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmcc.filesystem.dao.BorrowAuditMapper">
+	<resultMap id="BaseResultMap" type="com.cmcc.filesystem.entity.BorrowAudit">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="file_id" property="fileId" jdbcType="BIGINT" />
+		<result column="dept_id" property="deptId" jdbcType="BIGINT" />
+		<result column="dept_name" property="deptName" jdbcType="VARCHAR" />
+		<result column="disabled" property="disabled" jdbcType="VARCHAR" />
+		<result column="apply_user_id" property="applyUserId" jdbcType="BIGINT" />
+		<result column="apply_user_name" property="applyUserName"
+			jdbcType="VARCHAR" />
+		<result column="apply_dept_id" property="applyDeptId" jdbcType="BIGINT" />
+		<result column="apply_dept_name" property="applyDeptName"
+			jdbcType="VARCHAR" />
+		<result column="described" property="described" jdbcType="VARCHAR" />
+		<result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+		<result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+		<result column="operator_id" property="operatorId" jdbcType="VARCHAR" />
+		<result column="operator_name" property="operatorName"
+			jdbcType="VARCHAR" />
+		<result column="return_time" property="returnTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, file_id, dept_id, dept_name, disabled, apply_user_id, apply_user_name,
+		apply_dept_id, apply_dept_name,
+		described, apply_time, audit_time, operator_id, operator_name, return_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from sys_borrow_audit
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from sys_borrow_audit
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.cmcc.filesystem.entity.BorrowAudit">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into sys_borrow_audit (file_id, dept_id, dept_name, disabled,
+		apply_user_id, apply_user_name, apply_dept_id,
+		apply_dept_name, described, apply_time,
+		audit_time, operator_id, operator_name, return_time
+		)
+		values (#{fileId,jdbcType=BIGINT}, #{deptId,jdbcType=BIGINT},
+		#{deptName,jdbcType=VARCHAR}, #{disabled,jdbcType=VARCHAR},
+		#{applyUserId,jdbcType=BIGINT}, #{applyUserName,jdbcType=VARCHAR},
+		#{applyDeptId,jdbcType=BIGINT},
+		#{applyDeptName,jdbcType=VARCHAR}, #{described,jdbcType=VARCHAR}, #{applyTime,jdbcType=TIMESTAMP},
+		#{auditTime,jdbcType=TIMESTAMP}, #{operatorId,jdbcType=VARCHAR},
+		#{operatorName,jdbcType=VARCHAR}, #{returnTime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.cmcc.filesystem.entity.BorrowAudit">
+		<selectKey resultType="java.lang.Long" keyProperty="id"
+			order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		insert into sys_borrow_audit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fileId != null">
+				file_id,
+			</if>
+			<if test="deptId != null">
+				dept_id,
+			</if>
+			<if test="deptName != null">
+				dept_name,
+			</if>
+			<if test="disabled != null">
+				disabled,
+			</if>
+			<if test="applyUserId != null">
+				apply_user_id,
+			</if>
+			<if test="applyUserName != null">
+				apply_user_name,
+			</if>
+			<if test="applyDeptId != null">
+				apply_dept_id,
+			</if>
+			<if test="applyDeptName != null">
+				apply_dept_name,
+			</if>
+			<if test="described != null">
+				described,
+			</if>
+			<if test="applyTime != null">
+				apply_time,
+			</if>
+			<if test="auditTime != null">
+				audit_time,
+			</if>
+			<if test="operatorId != null">
+				operator_id,
+			</if>
+			<if test="operatorName != null">
+				operator_name,
+			</if>
+			<if test="returnTime != null">
+				return_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fileId != null">
+				#{fileId,jdbcType=BIGINT},
+			</if>
+			<if test="deptId != null">
+				#{deptId,jdbcType=BIGINT},
+			</if>
+			<if test="deptName != null">
+				#{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="disabled != null">
+				#{disabled,jdbcType=VARCHAR},
+			</if>
+			<if test="applyUserId != null">
+				#{applyUserId,jdbcType=BIGINT},
+			</if>
+			<if test="applyUserName != null">
+				#{applyUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="applyDeptId != null">
+				#{applyDeptId,jdbcType=BIGINT},
+			</if>
+			<if test="applyDeptName != null">
+				#{applyDeptName,jdbcType=VARCHAR},
+			</if>
+			<if test="described != null">
+				#{described,jdbcType=VARCHAR},
+			</if>
+			<if test="applyTime != null">
+				#{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditTime != null">
+				#{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operatorId != null">
+				#{operatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="operatorName != null">
+				#{operatorName,jdbcType=VARCHAR},
+			</if>
+			<if test="returnTime != null">
+				#{returnTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.cmcc.filesystem.entity.BorrowAudit">
+		update sys_borrow_audit
+		<set>
+			<if test="fileId != null">
+				file_id = #{fileId,jdbcType=BIGINT},
+			</if>
+			<if test="deptId != null">
+				dept_id = #{deptId,jdbcType=BIGINT},
+			</if>
+			<if test="deptName != null">
+				dept_name = #{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="disabled != null">
+				disabled = #{disabled,jdbcType=VARCHAR},
+			</if>
+			<if test="applyUserId != null">
+				apply_user_id = #{applyUserId,jdbcType=BIGINT},
+			</if>
+			<if test="applyUserName != null">
+				apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+			</if>
+			<if test="applyDeptId != null">
+				apply_dept_id = #{applyDeptId,jdbcType=BIGINT},
+			</if>
+			<if test="applyDeptName != null">
+				apply_dept_name = #{applyDeptName,jdbcType=VARCHAR},
+			</if>
+			<if test="described != null">
+				described = #{described,jdbcType=VARCHAR},
+			</if>
+			<if test="applyTime != null">
+				apply_time = #{applyTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="auditTime != null">
+				audit_time = #{auditTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operatorId != null">
+				operator_id = #{operatorId,jdbcType=VARCHAR},
+			</if>
+			<if test="operatorName != null">
+				operator_name = #{operatorName,jdbcType=VARCHAR},
+			</if>
+			<if test="returnTime != null">
+				return_time = #{returnTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.cmcc.filesystem.entity.BorrowAudit">
+		update sys_borrow_audit
+		set dept_id = #{deptId,jdbcType=BIGINT},
+		file_id = #{fileId,jdbcType=BIGINT},
+		dept_name = #{deptName,jdbcType=VARCHAR},
+		disabled = #{disabled,jdbcType=VARCHAR},
+		apply_user_id = #{applyUserId,jdbcType=BIGINT},
+		apply_user_name = #{applyUserName,jdbcType=VARCHAR},
+		apply_dept_id = #{applyDeptId,jdbcType=BIGINT},
+		apply_dept_name = #{applyDeptName,jdbcType=VARCHAR},
+		described = #{described,jdbcType=VARCHAR},
+		apply_time = #{applyTime,jdbcType=TIMESTAMP},
+		audit_time = #{auditTime,jdbcType=TIMESTAMP},
+		operator_id = #{operatorId,jdbcType=VARCHAR},
+		operator_name = #{operatorName,jdbcType=VARCHAR}
+		return_time = #{returnTime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="findBySelective" resultMap="BaseResultMap"
+		parameterType="com.cmcc.filesystem.entity.BorrowAudit">
+		select
+		<include refid="Base_Column_List" />
+		from sys_borrow_audit
+		where 1=1
+		<if test="fileId != null">
+			and file_id = #{fileId,jdbcType=BIGINT}
+		</if>
+		<if test="deptId != null">
+			and dept_id = #{deptId,jdbcType=BIGINT}
+		</if>
+		<if test="deptName != null">
+			and dept_name = #{deptName,jdbcType=VARCHAR}
+		</if>
+		<if test="disabled != null">
+			and disabled = #{disabled,jdbcType=VARCHAR}
+		</if>
+		<if test="applyUserId != null">
+			and apply_user_id = #{applyUserId,jdbcType=BIGINT}
+		</if>
+		<if test="applyUserName != null">
+			and apply_user_name = #{applyUserName,jdbcType=VARCHAR}
+		</if>
+		<if test="applyDeptId != null">
+			and apply_dept_id = #{applyDeptId,jdbcType=BIGINT}
+		</if>
+		<if test="applyDeptName != null">
+			and apply_dept_name = #{applyDeptName,jdbcType=VARCHAR}
+		</if>
+		<if test="described != null">
+			and described = #{described,jdbcType=VARCHAR}
+		</if>
+		<if test="applyTime != null">
+			and apply_time = #{applyTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="auditTime != null">
+			and audit_time = #{auditTime,jdbcType=TIMESTAMP}
+		</if>
+		<if test="operatorId != null">
+			and operator_id = #{operatorId,jdbcType=VARCHAR}
+		</if>
+		<if test="operatorName != null">
+			and operator_name = #{operatorName,jdbcType=VARCHAR}
+		</if>
+		<if test="returnTime != null">
+			and return_time = #{returnTime,jdbcType=TIMESTAMP}
+		</if>
+	</select>
+	<select id="findByFileId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select * 
+		from sys_borrow_audit
+		where file_Id = #{fileId, jdbcType=BIGINT}
+	</select>
+	<select id="findAll" resultMap="BaseResultMap">
+		select *
+		from sys_borrow_audit
+	</select>
+</mapper>

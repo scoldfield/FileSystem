@@ -1,0 +1,87 @@
+#transformFunction(g,@transformArg) {
+	-webkit-transform: @transformArg;
+	-moz-transform: @transformArg;
+	-o-transform: @transformArg;
+	-ms-transform: @transformArg;
+	transform: @transformArg;
+}
+#transformFunction(k,@transformArg) {
+	@{prefix}transform: @transformArg;
+}
+#transformoriginFunction(k,@originx:left,@originy:top) {
+	@{prefix}transform-origin: @originx  @originy;
+}
+#transformoriginFunction(g,@originx:left,@originy:top) {
+	-webkit-transform-origin: @originx  @originy;
+	-moz-transform-origin: @originx  @originy;
+	-ms-transform-origin: @originx  @originy;
+	-o-transform-origin: @originx  @originy;
+	transform-origin: @originx  @originy;
+}
+#transitionFunction(@tanslatestyle:all,@speed:1s, @tranlatefunction:ease,@translateDelay:0s) {
+	-webkit-transition: @tanslatestyle @speed  @tranlatefunction @translateDelay;
+	-moz-transition: @tanslatestyle @speed  @tranlatefunction @translateDelay;
+	-o-transition: @tanslatestyle @speed  @tranlatefunction @translateDelay;
+	-ms-transition: @tanslatestyle @speed  @tranlatefunction @translateDelay;
+	transition: @tanslatestyle @speed  @tranlatefunction @translateDelay;
+}
+
+#animationFunction(@as_stylename,@as_duration:1s,@as_function:linear,@as_delay:0,@as_mode:both,@as_count:infinite,@as_direction:normal ) {
+	-webkit-animation-name: @as_stylename;
+	-webkit-animation-duration: @as_duration;
+	-webkit-animation-delay: @as_delay;
+	-webkit-animation-timing-function: @as_function;
+	-webkit-animation-fill-mode: @as_mode;
+	-webkit-animation-iteration-count: @as_count;
+	-webkit-animation-direction: @as_direction;
+	-moz-animation-name: @as_stylename;
+	-moz-animation-duration: @as_duration;
+	-moz-animation-delay: @as_delay;
+	-moz-animation-timing-function: @as_function;
+	-moz-animation-fill-mode: @as_mode;
+	-moz-animation-iteration-count: @as_count;
+	-moz-animation-direction: @as_direction;
+	-o-animation-name: @as_stylename;
+	-o-animation-duration: @as_duration;
+	-o-animation-delay: @as_delay;
+	-o-animation-timing-function: @as_function;
+	-o-animation-fill-mode: @as_mode;
+	-o-animation-iteration-count: @as_count;
+	-o-animation-direction: @as_direction;
+	-ms-animation-name: @as_stylename;
+	-ms-animation-duration: @as_duration;
+	-ms-animation-delay: @as_delay;
+	-ms-animation-timing-function: @as_function;
+	-ms-animation-fill-mode: @as_mode;
+	-ms-animation-iteration-count: @as_count;
+	-ms-animation-direction: @as_direction;
+	animation-name: @as_stylename;
+	animation-duration: @as_duration;
+	animation-delay: @as_delay;
+	animation-timing-function: @as_function;
+	animation-fill-mode: @as_mode;
+	animation-iteration-count: @as_count;
+	animation-direction: @as_direction;
+}
+#keyframesFunction(@name; @frameContent) {
+	@-webkit-keyframes  @name{
+		@prefix: -webkit-;
+		@frameContent();
+	}
+	@-moz-keyframes  @name{
+		@prefix: -moz-;
+		@frameContent();
+	}
+	@-o-keyframes  @name{
+		@prefix: -moz-;
+		@frameContent();
+	}
+	@-ms-keyframes  @name{
+		@prefix: -ms-;
+		@frameContent();
+	}
+	@keyframes  @name{
+		@prefix: ~'';
+		@frameContent();
+	}
+}

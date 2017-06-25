@@ -1,0 +1,24 @@
+@import "../lib/component-animate";
+@import "../lib/component-function";
+@import "../lib/teacher_var";
+/* nav in contents */
+@optHeight:50px;
+@hoverBorderTopWidth:2px;
+.m-teacherNav{ height:@optHeight;
+    li{ float:left; height:@optHeight; padding:0 15px; width:125px \9; text-align:center;
+        a{ display:block; width:100%; height:@optHeight; line-height:@optHeight; color:#666; font-size:14px; }
+
+        &:hover{
+            a{ color:#61B20C; }
+        }
+
+        &.active{height:@optHeight - 2px;  border-bottom:3px solid #61B20C;
+            a{ color:#61B20C; font-size:16px; }
+        }
+
+        /* &.public{ display:block; width:90px; height:30px; line-height:30px; margin-top:10px; margin-left:20px; background-color:@topColor - #333; .boxradius(all, 5px); font-size:14px; color:#FFF;
+             &:hover{ border-bottom:none; background-color:@topColor - #222; }
+         }*/
+    }
+
+}

@@ -19,6 +19,7 @@ public class UserDto {
     private Date lastAccessTime;
     private String ip;
     private Boolean state;
+    private String comment;
 
     //新增属性
     private Long roleId;
@@ -153,5 +154,13 @@ public class UserDto {
     }
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

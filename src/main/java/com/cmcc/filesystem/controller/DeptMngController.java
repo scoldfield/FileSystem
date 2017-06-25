@@ -243,8 +243,9 @@ public class DeptMngController {
 	public String delete(String deptId) {
 	    Dept dept = deptService.selectByPrimaryKey(Long.parseLong(deptId));
 	    if(dept != null) {
-	        dept.setState(Boolean.FALSE);
-	        deptService.updateByPrimaryKeySelective(dept);
+//	        dept.setState(Boolean.FALSE);
+//	        deptService.updateByPrimaryKeySelective(dept);
+			deptService.deleteByPrimaryKey(Long.parseLong(deptId));
 	    }
 	    
 	    return "redirect:list";

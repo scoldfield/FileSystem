@@ -18,11 +18,12 @@
 		<result column="last_access_time" jdbcType="DATE" property="lastAccessTime" />
 		<result column="ip" jdbcType="VARCHAR" property="ip" />
 		<result column="state" jdbcType="TINYINT" property="state" />
+		<result column="comment" jdbcType="VARCHAR" property="comment" />
 	</resultMap>
 	<sql id="Base_Column_List">
 		id, job_id, username, password, salt, name, sex, dept_id, dept, mobile,
 		role_id, position, create_time, last_access_time,
-		ip, state
+		ip, state, comment
 	</sql>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
 		resultMap="BaseResultMap">
@@ -42,7 +43,7 @@
 		insert into sys_user (job_id, username, password, salt, name,
 		sex, dept_id, dept, mobile, role_id, position,
 		create_time, last_access_time, ip,
-		state)
+		state, comment)
 		values (#{jobId,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
 		#{name,jdbcType=VARCHAR},
@@ -50,7 +51,7 @@
 		#{mobile,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT},
 		#{position,jdbcType=VARCHAR},
 		#{createTime,jdbcType=DATE}, #{lastAccessTime,jdbcType=DATE}, #{ip,jdbcType=VARCHAR},
-		#{state,jdbcType=BIT})
+		#{state,jdbcType=BIT}, #{comment, jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.cmcc.filesystem.entity.User"
 		keyProperty="id" useGeneratedKeys="true">
@@ -103,6 +104,9 @@
 			<if test="state != null">
 				state,
 			</if>
+			<if test="comment != null">
+				comment,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="jobId != null">
@@ -149,6 +153,9 @@
 			</if>
 			<if test="state != null">
 				#{state,jdbcType=BIT},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -200,6 +207,9 @@
 			<if test="state != null">
 				state = #{state,jdbcType=BIT},
 			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=BIGINT}
 	</update>
@@ -219,7 +229,8 @@
 		create_time = #{createTime,jdbcType=DATE},
 		last_access_time = #{lastAccessTime,jdbcType=DATE},
 		ip = #{ip,jdbcType=VARCHAR},
-		state = #{state,jdbcType=BIT}
+		state = #{state,jdbcType=BIT},
+		comment = #{comment,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<select id="findByUsername" parameterType="java.lang.String"
@@ -282,6 +293,9 @@
 		</if>
 		<if test="state != null">
 			and state = #{state,jdbcType=BIT}
+		</if>
+		<if test="comment != null">
+			and comment = #{comment,jdbcType=VARCHAR}
 		</if>
 	</select>
 </mapper>

@@ -33,6 +33,10 @@ private Long id;
 
     private Date returnTime;	//归还时间
 
+    private Long belongedDeptId;    //档案归属部门id
+
+    private String belongedDeptName;    //档案归属部门name
+
     
     //新增字段
     private String secretLevel;		//密级
@@ -40,6 +44,8 @@ private Long id;
     private String generateWord;	//档案文字号
     
     private String fileTitle;		//档案标题
+
+    private String applyUserResources;  //申请人拥有的权限
     
 	public String getFileTitle() {
 		return fileTitle;
@@ -197,5 +203,29 @@ private Long id;
 
     public void setOperatorName(String operatorName) {
         this.operatorName = operatorName == null ? null : operatorName.trim();
+    }
+
+    public Long getBelongedDeptId() {
+        return belongedDeptId;
+    }
+
+    public void setBelongedDeptId(Long belongedDeptId) {
+        this.belongedDeptId = belongedDeptId;
+    }
+
+    public String getBelongedDeptName() {
+        return belongedDeptName;
+    }
+
+    public void setBelongedDeptName(String belongedDeptName) {
+        this.belongedDeptName = belongedDeptName;
+    }
+
+    public String getApplyUserResources() {
+        return applyUserResources;
+    }
+
+    public void setApplyUserResources(String applyUserResources) {
+        this.applyUserResources = applyUserResources;
     }
 }

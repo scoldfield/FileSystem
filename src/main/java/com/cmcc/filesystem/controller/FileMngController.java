@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cmcc.filesystem.util.StringUtil;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.ProgressListener;
@@ -79,6 +80,28 @@ public class FileMngController {
 
 		model.addAttribute("fileDtos", fileDtos);
 		return "file/list";
+	}
+
+	/**
+	 * 目录管理
+	 * @param model
+	 * @return
+	 * @throws IllegalAccessException
+	 * @throws InvocationTargetException
+	 */
+	@RequestMapping("/indexList")
+	public String indexList(Model model) throws IllegalAccessException, InvocationTargetException {
+		List<FileDto> fileDtos = new ArrayList<FileDto>();
+		List<File> files = fileService.findAll();
+		if (files.size() > 0) {
+			for (File f : files) {
+				FileDto fileDto = dtoUtils.fileToFileDto(f);
+				fileDtos.add(fileDto);
+			}
+		}
+
+		model.addAttribute("fileDtos", fileDtos);
+		return "file/indexList";
 	}
 
 	@RequestMapping("/add")
@@ -460,4 +483,33 @@ public class FileMngController {
     		}
     	}
     }
+
+	/**
+	 * 档案录入记录
+	 * @return
+	 */
+	@RequestMapping("/addRecord")
+	public String addRecord(Model model) throws InvocationTargetException, IllegalAccessException {
+		List<FileDto> fileDtos = new ArrayList<>();
+
+		String username = (String) SecurityUtils.getSubject().getPrincipal();
+		if(!StringUtils.isEmpty(username)){
+			User currentUser = userService.findByUsername(username);
+			Long receiverId = currentUser.getId();
+
+			File file = new File();
+			file.setState(true);
+			file.setReceiveUserId(receiverId);
+			List<File> files = fileService.findSelective(file);
+			if(files.size() > 0){
+				for(File tmp : files){
+					FileDto fileDto = dtoUtils.fileToFileDto(tmp);
+					fileDtos.add(fileDto);
+				}
+			}
+		}
+
+		model.addAttribute("fileDtos", fileDtos);
+		return "file/addRecord";
+	}
 }

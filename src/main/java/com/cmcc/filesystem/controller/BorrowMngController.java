@@ -390,5 +390,33 @@ public class BorrowMngController {
         model.addAttribute("borrowAuditDtos", borrowAuditDtos);
         return "borrow/borrowRecord";
     }
-    
+
+    /**
+     * 当前登录人借阅记录
+     */
+    @RequestMapping("/myBorrow")
+    public String myBorrow(Model model) throws InvocationTargetException, IllegalAccessException {
+        List<BorrowAuditDto> borrowAuditDtos = new ArrayList<BorrowAuditDto>();
+        User loginUser = null;
+        String username = (String) SecurityUtils.getSubject().getPrincipal();
+        if(!org.apache.commons.lang.StringUtils.isEmpty(username)){
+            loginUser = userService.findByUsername(username);
+        }
+
+
+        if(loginUser != null){
+            List<BorrowAudit> borrowAudits = borrowAuditService.findAll();
+            if(borrowAudits.size() > 0){
+                for(BorrowAudit ba : borrowAudits){
+                    BorrowAuditDto bad = dtoUtils.borrowAuditToBorrowAuditDto(ba);
+                    if(bad != null && bad.getApplyUserId() == loginUser.getId()){
+                        borrowAuditDtos.add(bad);
+                    }
+                }
+            }
+        }
+        model.addAttribute("borrowAuditDtos", borrowAuditDtos);
+        return "borrow/myBorrow";
+    }
+
 }

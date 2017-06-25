@@ -185,7 +185,8 @@ public class DtoUtils {
         user.setUsername(userDto.getUsername());
         user.setDeptId(Long.parseLong(userDto.getDeptId()));
         user.setRoleId(userDto.getRoleId());
-        
+        user.setComment(userDto.getComment());
+
         return user;
     }
     
@@ -195,7 +196,8 @@ public class DtoUtils {
         //设置字符串格式generateDateStr字段
         Date generateDate = file.getGenerateDate();
         if(generateDate != null) {
-            fileDto.setGenerateDateStr(new SimpleDateFormat("yyyy-mm-dd").format(generateDate));
+            String formated = new SimpleDateFormat("yyyy-mm-dd HH:MM:SS").format(generateDate);
+            fileDto.setGenerateDateStr(formated);
         }
         
         User receiveUser = userService.selectByPrimaryKey(file.getReceiveUserId());
@@ -361,7 +363,31 @@ public class DtoUtils {
         bad.setSecretLevel(file.getSecretLevel());
         bad.setGenerateWord(file.getGenerateWord());
         bad.setFileTitle(file.getFileTitle());
-        
+        bad.setBelongedDeptId(file.getBelongedDeptId());
+        Dept dept = deptService.selectByPrimaryKey(file.getBelongedDeptId());
+        bad.setBelongedDeptName(dept != null ? dept.getDeptName() : "");
+
+        //申请人拥有的权限
+        StringBuilder resNames = new StringBuilder();
+        Long applyUserId = ba.getApplyUserId();
+        User user = userService.selectByPrimaryKey(applyUserId);
+        Role role = roleService.selectByPrimaryKey(user.getRoleId());
+        String resourceIds = role.getResourceIds();
+        String[] resIdList = resourceIds.split(",");
+        for(String resId : resIdList){
+            List<Resource> resList = resourceService.getUserResources();
+            if(resList.size() > 0){
+                for(Resource res : resList){
+                    if(4 == res.getParentId()){
+                        resNames.append(res.getName());
+                        resNames.append(",");
+                    }
+                }
+            }
+        }
+        String resName = resNames.toString();
+        bad.setApplyUserResources(resName);
+
         return bad;
     }
     

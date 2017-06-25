@@ -1,0 +1,55 @@
+@import "../pub/teacher_global";
+@import "../lib/component-function";
+@import "../module/m-teacherNav";
+@import "../plug/ymPromptTeacher";
+@import "../module/m-selectui";
+.g-content{ padding:20px; margin-top:10px; margin-bottom:20px; background-color:#FFF; }
+.g-cookbookWrap{ width:1000px; margin:30px auto;
+    .cookHead{ line-height:30px; }
+    .cookBody{ margin-top:20px; }
+}
+.m-selectmonth{ margin-left:10px; margin-right:10px;
+    a{ display:block; float:left; width:28px; border:1px solid #DDD; background-color:#F6F6F6; text-align:center; line-height:28px; color:#000; cursor:pointer; .userSelect();
+        &:hover{ background-color:@global_green; border-color:@global_green; color:#FFF; }
+    }
+    .u-gipt-month{ width:20px; float:left; border-left:none; border-right:0; text-align:center; }
+}
+.m-selectui-year{ width:72px; margin-right:10px; height:22px;
+    .intotext{ width:58px; height:22px; line-height:22px; }
+    .optionwarp{
+        li{ font-size:14px; height:30px; line-height:30px; text-align:center; }
+    }
+}
+.g-calendarWrap{ width:400px; padding-right:80px; }
+table.m-tableDate{ width:100%; border-collapse:collapse; border:2px solid #A0D469;
+    @tableDateHeight:45px;
+    thead{ background-color:#F5FBF0; }
+    td{ height:@tableDateHeight; line-height:@tableDateHeight; border:1px solid #DDD; text-align:center; }
+    a{ display:block; float:left; width:100%; height:@tableDateHeight; line-height:@tableDateHeight; text-align:center; cursor:pointer; color:#09C;
+        &:hover{ background-color:#F0B99B; color:#FFF; }
+        &.current{ background-color:#F07659; color:#FFF; }
+        &.gray{ background-color:#F2EFF5; color:#CCC; }
+    }
+}
+.g-cbContent{ position:relative; border-left:5px solid @global_green; padding-left:60px;
+    .trigon{ position:absolute; top:145px; left:0; border:10px solid transparent; border-left-color:@global_green; }
+    li{ padding:10px 0; }
+    .content{ position:relative; float:left; width:325px; border:1px dashed #DDD; background-color:#FFF;
+        textarea{ width:315px; height:70px; padding:5px; border:none; background:none; resize:none; }
+        .reset,
+        .save{ float:left; display:inline-block; width:24px; height:24px; background-image:url(../../images/cookbookIcon.png); }
+        .deal{ position:absolute; bottom:5px; right:15px; .opacity(0); width:50px; }
+        .save{ background-position:-7px -311px; }
+        .reset{ background-position:-7px -348px; }
+        &.active{ border:1px solid #B8DBF4; box-shadow:inset 1px 1px 6px #E3E3E3;
+            .deal{ .opacity(1) }
+        }
+    }
+    .icon{ float:left; display:block; width:60px; height:30px; margin-right:20px; padding-top:58px; line-height:30px; text-align:center; background-image:url(../../images/cookbookIcon.png); background-repeat:no-repeat;
+        &.icon-1{ background-position:0 0; }
+        &.icon-2{ background-position:0 -111px; }
+        &.icon-3{ background-position:0 -221px; }
+    }
+}
+
+

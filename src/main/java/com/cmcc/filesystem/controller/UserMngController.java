@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.util.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,9 +133,12 @@ public class UserMngController {
     @RequestMapping("/delete")
     public String delete(String userId) {
         if(StringUtils.hasText(userId)) {
-            User user = userService.selectByPrimaryKey(Long.parseLong(userId));
-            user.setState(Boolean.FALSE);
-            userService.updateByPrimaryKeySelective(user);
+//            User user = userService.selectByPrimaryKey(Long.parseLong(userId));
+//            user.setState(Boolean.FALSE);
+//            userService.updateByPrimaryKeySelective(user);
+            UserDeptRole userDeptRole = userDeptRoleService.findByUserId(userId);
+            userDeptRoleService.deleteByPrimaryKey(userDeptRole.getId());
+            userService.deleteByPrimaryKey(Long.parseLong(userId));
         }
         
         return "redirect:list";
@@ -146,6 +150,9 @@ public class UserMngController {
             User user = userService.selectByPrimaryKey(Long.parseLong(userId));
             UserDto userDto = dtoUtils.userToUserDto(user);
             model.addAttribute("userDto", userDto);
+
+            String username = (String) SecurityUtils.getSubject().getSession().getAttribute("username");
+            model.addAttribute("username", username);
         }
         
         return "user/detail";
@@ -175,12 +182,16 @@ public class UserMngController {
     } 
 
     @RequestMapping("/userAuditPost")
-    public String userAuditPost(String userId, Model model) {
+    public String userAuditPost(String userId, String result) {
         if(StringUtils.hasText(userId)) {
             User user = userService.selectByPrimaryKey(Long.parseLong(userId));
             if(user != null) {
                 //更新sys_user表
-                user.setState(Boolean.TRUE);
+                if("1".equals(result)){
+                    user.setState(Boolean.TRUE);
+                } else if("0".equals(result)){
+                    user.setState(Boolean.FALSE);
+                }
                 userService.updateByPrimaryKeySelective(user);
                 
                 //更新sys_register_audit表

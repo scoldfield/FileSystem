@@ -26,6 +26,7 @@ public class User implements Serializable {
 	private Date lastAccessTime;
 	private String ip;
 	private Boolean state;
+	private String comment;
 	private static final long serialVersionUID = 1L;
 
 
@@ -125,5 +126,12 @@ public class User implements Serializable {
 	public void setState(Boolean state) {
 		this.state = state;
 	}
-	
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }

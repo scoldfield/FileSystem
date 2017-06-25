@@ -1,0 +1,10 @@
+/* search  */
+@import "../lib/component-animate";
+@import "../lib/component-function";
+@import "../lib/var";
+.m-search{ position:relative; width:240px; height:26px; border:1px solid #DDD;
+    input.ipt{ width:85%; height:100%; line-height:24px; line-height:23px \9; border:none; background:#FFF; outline:none; padding:2px 5px; .boxsizing();
+        &:focus{ box-shadow:0 0 3px @global_blue; }
+    }
+    input.btn{ width:15%; height:100%; border:none; outline:none; border-left:1px solid #DDD; .boxsizing(); &:extend(.icon-sprite-y); background-color:#FFF; background-position:6px -283px; }
+}

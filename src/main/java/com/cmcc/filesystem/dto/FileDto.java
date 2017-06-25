@@ -65,7 +65,6 @@ public class FileDto {
     
     private String generateDateStr;     //签发日期，字符串
 
-
     public String getLocation() {
 		return location;
 	}

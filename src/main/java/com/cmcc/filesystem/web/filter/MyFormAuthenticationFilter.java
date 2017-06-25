@@ -9,6 +9,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cmcc.filesystem.entity.Role;
+import com.cmcc.filesystem.service.IRoleService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -29,6 +31,9 @@ public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
     
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IRoleService roleService;
     
     private Logger logger = Logger.getLogger(getClass());
 
@@ -116,7 +121,16 @@ public class MyFormAuthenticationFilter extends FormAuthenticationFilter {
         String username = (String) SecurityUtils.getSubject().getPrincipal();
         User user = userService.findByUsername(username);
         if(user != null && !"".equals(user.getName())) {
+            //向session中写入字段供前端使用
             SecurityUtils.getSubject().getSession().setAttribute("name", user.getName());
+            SecurityUtils.getSubject().getSession().setAttribute("username", user.getUsername());
+            Long roleId = user.getRoleId();
+            if(roleId != null){
+                Role role = roleService.selectByPrimaryKey(roleId);
+                if(role != null){
+                    SecurityUtils.getSubject().getSession().setAttribute("roleName", role.getName());
+                }
+            }
         }
         
         String url = "/index";
