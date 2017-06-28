@@ -1,20 +1,24 @@
 package com.cmcc.filesystem.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.net.URLEncoder;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cmcc.filesystem.dto.UserDto;
+import com.cmcc.filesystem.entity.Table;
 import com.cmcc.filesystem.util.StringUtil;
+import io.netty.handler.codec.http.HttpResponse;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.ProgressListener;
@@ -511,5 +515,121 @@ public class FileMngController {
 
 		model.addAttribute("fileDtos", fileDtos);
 		return "file/addRecord";
+	}
+
+	//档案分类
+	@RequestMapping("/search")
+	public String search(Model model){
+		//发文类型
+		String[] wordTypes = null;
+		String wordTypeString = Constants.GENERATE_TYPES;
+		if(!StringUtils.isEmpty(wordTypeString)){
+			wordTypes = wordTypeString.split(",");
+		}
+
+		//部门
+		List<Dept> depts = deptService.findAll();
+
+		model.addAttribute("wordTypes", wordTypes);
+		model.addAttribute("depts", depts);
+		return "file/searchList";
+	}
+
+	@RequestMapping("/searchPost")
+	public String searchPost(String generateType, String deptId, Model model) throws InvocationTargetException, IllegalAccessException {
+		List<FileDto> fileDtos = new ArrayList<>();
+
+		File file = new File();
+		file.setGenerateType(generateType);
+		file.setBelongedDeptId(Long.parseLong(deptId));
+		List<File> files = fileService.findSelective(file);
+
+		if(files.size() > 0){
+			for(File f : files){
+				FileDto fd = dtoUtils.fileToFileDto(f);
+				fileDtos.add(fd);
+			}
+		}
+
+		//==============供筛选框使用==========
+		//发文类型
+		String[] wordTypes = null;
+		String wordTypeString = Constants.GENERATE_TYPES;
+		if(!StringUtils.isEmpty(wordTypeString)){
+			wordTypes = wordTypeString.split(",");
+		}
+
+		//部门
+		List<Dept> depts = deptService.findAll();
+
+		model.addAttribute("wordTypes", wordTypes);
+		model.addAttribute("depts", depts);
+		//===================================
+
+
+		model.addAttribute("fileDtos", fileDtos);
+		return "file/searchList";
+	}
+
+
+	@RequestMapping("/downloadUsers")
+	public void downloadUsers(Model model, HttpServletResponse resp) throws IOException, WriteException {
+		List<User> users = userService.findAll();
+		List<UserDto> userDtos = new ArrayList<UserDto>();
+		if (users.size() > 0) {
+			for (User user : users) {
+				UserDto userDto = dtoUtils.userToUserDto(user);
+				userDtos.add(userDto);
+			}
+		}
+
+		/*
+		 * 生成excel报表
+		 */
+		//设置下载环境
+		resp.reset();    //清空输出流
+		//处理中文名
+		resp.setCharacterEncoding("utf-8");
+		String filename = "信息统计表";
+		filename = URLEncoder.encode(filename, "utf-8");
+		resp.setHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes("UTF-8"), "GBK") + ".xls");
+		resp.setContentType("application/msexcel");//定义输出类型
+
+		//创建工作薄
+		WritableWorkbook workbook = Workbook.createWorkbook(resp.getOutputStream());
+		//创建新的一页
+		WritableSheet sheet = workbook.createSheet("sheet", 0);
+		//创建要显示的内容，创建一个单元格，第一个参数为列坐标，第二个参数为行坐标，第三个参数为内容
+		//姓名、性别，部门，职务，身份（角色）
+		Label secLabel0 = new Label(0, 0, "姓名");
+		Label secLabel1 = new Label(1, 0, "性别");
+		Label secLabel2 = new Label(2, 0, "部门");
+		Label secLabel3 = new Label(3, 0, "职务");
+		Label secLabel4 = new Label(4, 0, "身份(角色)");
+		sheet.addCell(secLabel0);
+		sheet.addCell(secLabel1);
+		sheet.addCell(secLabel2);
+		sheet.addCell(secLabel3);
+		sheet.addCell(secLabel4);
+
+		if (userDtos.size() > 0) {
+			for (int i = 1; i <= userDtos.size(); i++) {
+				UserDto currUser = userDtos.get(i - 1);
+				secLabel0 = new Label(0, i, currUser.getName());
+				secLabel1 = new Label(1, i, (currUser.getSex() == true ? "男" : "女"));
+				secLabel2 = new Label(2, i, currUser.getDept());
+				secLabel3 = new Label(3, i, currUser.getPosition());
+				secLabel4 = new Label(4, i, currUser.getRoleName());
+				sheet.addCell(secLabel0);
+				sheet.addCell(secLabel1);
+				sheet.addCell(secLabel2);
+				sheet.addCell(secLabel3);
+				sheet.addCell(secLabel4);
+			}
+		}
+
+		workbook.write();
+		workbook.close();
+		resp.getOutputStream().close();
 	}
 }

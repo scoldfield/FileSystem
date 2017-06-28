@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  */
 public class Constants {
+
 	
 	//部门负责人的roleId
 	public static final Long DEPT_MANAGER_ROLEID = 1l;

@@ -15,9 +15,9 @@
 <body>
 
     <div align="right">
-        <%--<a href="${pageContext.request.contextPath }/userMng/add" style="text-decoration: none">新增</a>--%>
         <shiro:hasPermission name="user:add">
-        <img src="${pageContext.request.contextPath}/static/new.ico" onclick="location.href='${pageContext.request.contextPath }/userMng/add'"/>
+            <a href="${pageContext.request.contextPath }/userMng/add" style="text-decoration: none">新增</a>
+        <%--<img src="${pageContext.request.contextPath}/static/new.ico" onclick="location.href='${pageContext.request.contextPath }/userMng/add'"/>--%>
         </shiro:hasPermission>
     </div>
     <table border="1" align="center" width="95%">

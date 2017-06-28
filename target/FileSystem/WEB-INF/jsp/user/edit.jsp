@@ -79,9 +79,17 @@
                     <input name="mobile" value="${userDto.mobile }" ><br>
                 </td>
             </tr>
+            <tr align="center" height="40">
+                <td>
+                    职务：
+                </td>
+                <td>
+                    <input name="position" value="${userDto.position }" ><br>
+                </td>
+            </tr>
             <tr align="center" height="40" >
 				<td>
-					职务：
+					角色：
 				</td>
                 <td>
                     <select name="roleId">

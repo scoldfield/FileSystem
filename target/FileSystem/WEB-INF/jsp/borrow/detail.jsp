@@ -127,7 +127,7 @@
 				<td>
                     <c:if test="${applied==true }">申请已经提交</c:if>
                     <c:if test="${applied==null || applied==false }"><a href="${pageContext.request.contextPath }/borrow/applyPost?fileId=${fileDto.id}">借阅申请</a></c:if>
-					授权阅读
+					<%--授权阅读--%>
 				</td>
 				
 			</tr>

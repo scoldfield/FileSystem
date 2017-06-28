@@ -2,8 +2,10 @@ package com.cmcc.filesystem.controller;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import com.cmcc.filesystem.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,11 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cmcc.filesystem.dto.RegisterAuditDto;
 import com.cmcc.filesystem.dto.RoleDto;
 import com.cmcc.filesystem.dto.UserDto;
-import com.cmcc.filesystem.entity.Dept;
-import com.cmcc.filesystem.entity.RegisterAudit;
-import com.cmcc.filesystem.entity.Role;
-import com.cmcc.filesystem.entity.User;
-import com.cmcc.filesystem.entity.UserDeptRole;
 import com.cmcc.filesystem.service.IDeptService;
 import com.cmcc.filesystem.service.IRegisterAuditService;
 import com.cmcc.filesystem.service.IRoleService;
@@ -220,7 +217,16 @@ public class PermMngController {
         if(role != null) {
             roleDto = dtoUtils.roleToRoleDto(role);
         }
-        
+
+        List<Resource> appendResources = roleDto.getAppendResources();
+        Iterator<Resource> iterator = appendResources.iterator();
+        while(iterator.hasNext()){
+            Resource res = iterator.next();
+            if("修改".equals(res.getName())){
+                iterator.remove();
+            }
+        }
+
         model.addAttribute("roleDto", roleDto);
         return "perm/editPerm";
     }

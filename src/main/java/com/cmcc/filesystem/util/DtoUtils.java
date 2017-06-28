@@ -374,14 +374,13 @@ public class DtoUtils {
         Role role = roleService.selectByPrimaryKey(user.getRoleId());
         String resourceIds = role.getResourceIds();
         String[] resIdList = resourceIds.split(",");
-        for(String resId : resIdList){
-            List<Resource> resList = resourceService.getUserResources();
-            if(resList.size() > 0){
-                for(Resource res : resList){
-                    if(4 == res.getParentId()){
-                        resNames.append(res.getName());
-                        resNames.append(",");
-                    }
+        if(resIdList.length > 0){
+            for(String resId : resIdList){
+//            List<Resource> resList = resourceService.getUserResources();
+                Resource res = resourceService.selectByPrimaryKey(Long.parseLong(resId));
+                if(4 == res.getParentId()){
+                    resNames.append(res.getName());
+                    resNames.append(",");
                 }
             }
         }

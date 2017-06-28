@@ -181,7 +181,7 @@
                         <a href="${pageContext.request.contextPath }/fileMng/list">档案信息</a>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="file:categ">
-                        <a href="#">档案分类</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/search">档案分类</a>
                     </shiro:hasPermission>
                     <shiro:hasPermission name="file:dir">
                         <a href="${pageContext.request.contextPath }/fileMng/indexList">目录管理</a>

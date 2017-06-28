@@ -90,7 +90,8 @@ public class UserMngController {
         udr.setUserId(user.getId());
         udr.setDeptId(Long.parseLong(userDto.getDeptId()));
         udr.setRoleId(userDto.getRoleId());
-        udr.setIsDeptManager("1".equals(isDeptManager) ? Boolean.TRUE : Boolean.FALSE);
+//        udr.setIsDeptManager("1".equals(isDeptManager) ? Boolean.TRUE : Boolean.FALSE);
+        udr.setIsDeptManager(false);
         udr.setIsFileManager("1".equals(isFileManager) ? Boolean.TRUE : Boolean.FALSE);
         userDeptRoleService.insertSelective(udr);
         
@@ -111,7 +112,10 @@ public class UserMngController {
             UserDto userDto = dtoUtils.userToUserDto(user);
             model.addAttribute("userDto", userDto);
         }
-        
+
+        List<Role> roles = roleService.findAll();
+        model.addAttribute("roles", roles);
+
         List<Dept> depts = deptService.findAll();
         model.addAttribute("depts", depts);
         
@@ -201,7 +205,7 @@ public class UserMngController {
             }
         }
         
-        return "redirect:userAudit";
+        return "redirect:list";
     }
     
 }

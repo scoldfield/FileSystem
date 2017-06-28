@@ -98,17 +98,19 @@
                     </select><br>
                 </td>
             </tr>
-            <tr align="center" height="40" >
-				<td>
-					是否是部门管理员：
-				</td>
-                <td>
-                    <select name="isDeptManager">
-                        <option value="1">是</option>
-                        <option value="0">否</option>
-                    </select><br>
-                </td>
-            </tr>
+            <!--隐藏-->
+            <%--<tr align="center" height="0">--%>
+				<%--<td>--%>
+					<%--是否是部门管理员：--%>
+				<%--</td>--%>
+                <%--<td>--%>
+                    <%--<!--20170627去除-->--%>
+                    <%--<select name="isDeptManager">--%>
+                        <%--<option value="1">是</option>--%>
+                        <%--<option value="0">否</option>--%>
+                    <%--</select><br>--%>
+                <%--</td>--%>
+            <%--</tr>--%>
             <tr align="center" height="40" >
 				<td>
 					是否是档案管理员：
