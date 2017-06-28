@@ -73,7 +73,7 @@
                     <td align="center">
                         <c:if test="${userDto.state==false }">
                             <a href="${pageContext.request.contextPath }/userMng/userAuditPost?userId=${userDto.id}&result=1">通过</a>
-                            <a href="${pageContext.request.contextPath }/userMng/userAuditPost?userId=${userDto.id}&result=0">不通过</a>
+                            <%--<a href="${pageContext.request.contextPath }/userMng/userAuditPost?userId=${userDto.id}&result=0">不通过</a>--%>
                         </c:if>
                             <%-- <a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}">修改&nbsp</a>
                             <a href="${pageContext.request.contextPath }/userMng/delete?userId=${user.id}">删除</a> --%>
