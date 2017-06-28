@@ -221,6 +221,9 @@
                     <shiro:hasPermission name="biz:record">
                         <a href="${pageContext.request.contextPath }/biz/fileTable">信息统计下载</a>
                     </shiro:hasPermission>
+                    <shiro:hasPermission name="biz:userDown">
+                        <a href="${pageContext.request.contextPath }/biz/fileTable">人员统计下载</a>
+                    </shiro:hasPermission>
                 </div>
             </shiro:hasPermission>
         </div>
