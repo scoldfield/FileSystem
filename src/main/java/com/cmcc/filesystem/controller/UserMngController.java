@@ -205,7 +205,7 @@ public class UserMngController {
             }
         }
         
-        return "redirect:list";
+        return "redirect:userAudit";
     }
     
 }
