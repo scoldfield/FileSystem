@@ -149,7 +149,7 @@
             </shiro:hasPermission>
      
             <shiro:hasPermission name="dept:mngt">
-                <h2 class="menu_head"><a href="${pageContext.request.contextPath }/deptMng/list" style="text-decoration-line: none">部门管理</a></h2>
+                <h2 class="menu_head"><a href="${pageContext.request.contextPath }/deptMng/list" style="text-decoration: none">部门管理</a></h2>
                 <!-- <div style="display: none" class="menu_body">
                     <a href="#">应用经济学</a>
                     <a href="#">区域经济学</a>
@@ -166,7 +166,7 @@
             </shiro:hasPermission>
             
             <shiro:hasPermission name="sys:mngt">
-                <h2 class="menu_head"><a href="${pageContext.request.contextPath }/log/list" style="text-decoration-line: none">系统日志</a></h2>
+                <h2 class="menu_head"><a href="${pageContext.request.contextPath }/log/list" style="text-decoration: none">系统日志</a></h2>
                 <!-- <div style="display: none" class="menu_body">
                     <a href="#">体育人文社会学</a>
                     <a href="#">发展与教育心理学</a>

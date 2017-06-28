@@ -53,8 +53,8 @@
 	                </td>
 	                <td>
                         <c:if test="${borrowAuditDto.disabled==1 }">
-                            <a href="${pageContext.request.contextPath }/fileMng/download?fileId=${borrowAuditDto.fileId}" style="text-decoration-line: none">全文阅读</a>
-                            <a href="${pageContext.request.contextPath }/borrow/returnFile?fileId=${fileDto.id}" style="text-decoration-line: none">归还档案</a>
+                            <a href="${pageContext.request.contextPath }/fileMng/download?fileId=${borrowAuditDto.fileId}" style="text-decoration: none">全文阅读</a>
+                            <a href="${pageContext.request.contextPath }/borrow/returnFile?fileId=${fileDto.id}" style="text-decoration: none">归还档案</a>
                         </c:if>
                         <c:if test="${borrowAuditDto.disabled==0 }">权限不足，无法借阅</c:if>
 	                </td>

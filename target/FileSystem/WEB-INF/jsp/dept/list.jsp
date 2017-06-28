@@ -10,7 +10,7 @@
 <body>
 
     <div align="right">
-        <a href="${pageContext.request.contextPath }/deptMng/add" style="text-decoration-line: none">新增</a>
+        <a href="${pageContext.request.contextPath }/deptMng/add" style="text-decoration: none">新增</a>
     </div>
 
     <table border="1" align="center" width="95%">
@@ -53,9 +53,9 @@
                     ${deptDto.deptPhone }
                 </td>
                 <td align="center">
-                        <a href="${pageContext.request.contextPath }/deptMng/detail?deptId=${deptDto.id}" style="text-decoration-line: none">查看详情&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/deptMng/edit?deptId=${deptDto.id}" style="text-decoration-line: none">修改&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/deptMng/delete?deptId=${deptDto.id}" style="text-decoration-line: none">删除</a>
+                        <a href="${pageContext.request.contextPath }/deptMng/detail?deptId=${deptDto.id}" style="text-decoration: none">查看详情&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/deptMng/edit?deptId=${deptDto.id}" style="text-decoration: none">修改&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/deptMng/delete?deptId=${deptDto.id}" style="text-decoration: none">删除</a>
                 </td>
             </tr>
         </c:forEach>

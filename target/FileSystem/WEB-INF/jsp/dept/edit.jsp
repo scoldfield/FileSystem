@@ -61,7 +61,7 @@
             </td>
             <td align="center">
                 <input type="submit" value="提交">&nbsp;
-                <a href="${pageContext.request.contextPath }/deptMng/list" style="text-decoration-line: none">返回</a>
+                <a href="${pageContext.request.contextPath }/deptMng/list" style="text-decoration: none">返回</a>
             </td>
         </tr>
     </table>

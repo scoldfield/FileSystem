@@ -66,17 +66,17 @@
                                                             该用户尚未审核，请联系管理员
                     </c:if>
                     <c:if test="${user.state==true }">
-                        <shiro:hasPermission name="user:detail"><a href="${pageContext.request.contextPath }/userMng/detail?userId=${user.id}" style="text-decoration-line: none">查看&nbsp</a></shiro:hasPermission>
-                        <shiro:hasPermission name="user:edit"><a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}" style="text-decoration-line: none">修改&nbsp</a></shiro:hasPermission>
+                        <shiro:hasPermission name="user:detail"><a href="${pageContext.request.contextPath }/userMng/detail?userId=${user.id}" style="text-decoration: none">查看&nbsp</a></shiro:hasPermission>
+                        <shiro:hasPermission name="user:edit"><a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}" style="text-decoration: none">修改&nbsp</a></shiro:hasPermission>
                         <!--允许修改自己-->
                         <c:if test="${user.state==true}">
                             <c:if test="${user.name==name}">
                                 <c:if test="${user.username!='admin'}">
-                                    <a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}" style="text-decoration-line: none">修改&nbsp</a>
+                                    <a href="${pageContext.request.contextPath }/userMng/edit?userId=${user.id}" style="text-decoration: none">修改&nbsp</a>
                                 </c:if>
                             </c:if>
                         </c:if>
-                        <shiro:hasPermission name="user:del"><a href="${pageContext.request.contextPath }/userMng/delete?userId=${user.id}" style="text-decoration-line: none">删除</a></shiro:hasPermission>
+                        <shiro:hasPermission name="user:del"><a href="${pageContext.request.contextPath }/userMng/delete?userId=${user.id}" style="text-decoration: none">删除</a></shiro:hasPermission>
                     </c:if>
                 </td>
             </tr>

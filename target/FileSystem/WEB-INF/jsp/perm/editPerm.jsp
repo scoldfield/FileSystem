@@ -53,7 +53,7 @@
                 <td align="center">
                     <%-- <a href="${pageContext.request.contextPath }/permMng/editPerm?roleId=${roleDto.id}">修改</a> --%>
                     <input type="submit" value="提交"/>&nbsp;
-                    <a href="${pageContext.request.contextPath }/permMng/listRoles" style="text-decoration-line: none">返回</a>
+                    <a href="${pageContext.request.contextPath }/permMng/listRoles" style="text-decoration: none">返回</a>
                 </td>
             </tr>
         <%-- </c:forEach> --%>

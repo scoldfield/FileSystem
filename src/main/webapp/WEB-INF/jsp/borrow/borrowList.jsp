@@ -83,8 +83,8 @@
                     
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=1" style="text-decoration-line: none">同意&nbsp</a>
-                    <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=-1" style="text-decoration-line: none">不同意</a>
+                    <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=1" style="text-decoration: none">同意&nbsp</a>
+                    <a href="${pageContext.request.contextPath }/borrow/auditPost?fileId=${borrowAuditDto.fileId }&applyUserId=${borrowAuditDto.applyUserId }&deptId=${borrowAuditDto.deptId }&auditRes=-1" style="text-decoration: none">不同意</a>
                 </td>
             </tr>
         </c:forEach>

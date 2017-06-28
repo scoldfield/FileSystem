@@ -38,9 +38,9 @@
                     ${fileDto.secretLevel}
                 </td>
                 <td align="center">
-                        <a href="${pageContext.request.contextPath }/fileMng/detail?fileId=${fileDto.id}" style="text-decoration-line: none">查看&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/fileMng/edit?fileId=${fileDto.id}" style="text-decoration-line: none">修改&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/fileMng/delete?fileId=${fileDto.id}" style="text-decoration-line: none">删除</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/detail?fileId=${fileDto.id}" style="text-decoration: none">查看&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/edit?fileId=${fileDto.id}" style="text-decoration: none">修改&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/delete?fileId=${fileDto.id}" style="text-decoration: none">删除</a>
                 </td>
             </tr>
         </c:forEach>

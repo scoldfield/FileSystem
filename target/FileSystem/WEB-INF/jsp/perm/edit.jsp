@@ -66,7 +66,7 @@
             </td>
             <td align="center">
                 <input type="submit" value="确定">&nbsp;
-                <a href="${pageContext.request.contextPath }/permMng/list" style="text-decoration-line: none">返回</a>
+                <a href="${pageContext.request.contextPath }/permMng/list" style="text-decoration: none">返回</a>
             </td>
         </tr>
     </table>

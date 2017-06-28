@@ -94,7 +94,7 @@
 					附件：
 				</td>
 				<td>
-					<c:if test="${fileDto.location!=null }">${fileDto.location }<br><a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id }" style="text-decoration-line: none">重新上传</a></c:if>
+					<c:if test="${fileDto.location!=null }">${fileDto.location }<br><a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id }" style="text-decoration: none">重新上传</a></c:if>
 					<c:if test="${fileDto.location==null }"><a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id }" style="text-decoration-line: none;text-align: right">上传附件</a></c:if>
 				</td>
 			</tr>
@@ -141,7 +141,7 @@
 				<td></td>
 				<td>
 					<input type="submit" value="修改">&nbsp;
-					<a href="${pageContext.request.contextPath }/fileMng/list" style="text-decoration-line: none">返回</a>
+					<a href="${pageContext.request.contextPath }/fileMng/list" style="text-decoration: none">返回</a>
 				</td>
 				
 			</tr>

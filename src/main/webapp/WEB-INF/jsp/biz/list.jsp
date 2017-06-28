@@ -71,8 +71,8 @@
                     <c:if test="${fileDto.fillingDate!=null }">已归档&nbsp</c:if>
                 </td>
                 <td align="center">
-                    <c:if test="${fileDto.auditResult==0 }"><a href="${pageContext.request.contextPath }/biz/detail?fileId=${fileDto.id }" style="text-decoration-line: none">去审核</a></c:if>
-                    <c:if test="${fileDto.auditResult==1 && fileDto.fillingDate==null }"><a href="${pageContext.request.contextPath }/biz/filling?fileId=${fileDto.id }" style="text-decoration-line: none">归档</a></c:if>
+                    <c:if test="${fileDto.auditResult==0 }"><a href="${pageContext.request.contextPath }/biz/detail?fileId=${fileDto.id }" style="text-decoration: none">去审核</a></c:if>
+                    <c:if test="${fileDto.auditResult==1 && fileDto.fillingDate==null }"><a href="${pageContext.request.contextPath }/biz/filling?fileId=${fileDto.id }" style="text-decoration: none">归档</a></c:if>
                 </td>
             </tr>
         </c:forEach>

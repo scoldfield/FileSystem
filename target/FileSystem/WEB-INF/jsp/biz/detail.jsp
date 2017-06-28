@@ -128,8 +128,8 @@
                     <%--<c:if test="${fileDto.auditorName==null }">未被审核</c:if>--%>
                     <%--<c:if test="${fileDto.auditorName!=null }">${fileDto.auditorName }</c:if>--%>
 					<c:if test="${fileDto.auditResult=='0' }">
-						<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=1" style="text-decoration-line: none"> 审核通过&nbsp</a>
-						<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=-1" style="text-decoration-line: none">审核不通过</a>
+						<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=1" style="text-decoration: none"> 审核通过&nbsp</a>
+						<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=-1" style="text-decoration: none">审核不通过</a>
 					</c:if>
 				</td>
 			</tr>
@@ -178,8 +178,8 @@
                 <!-- 改成审核通过、审核不通过 -->
                     <!-- 未被审核  -->
                     <%--<c:if test="${fileDto.auditResult=='0' }">--%>
-                       <%--<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=1" style="text-decoration-line: none"> 审核通过&nbsp</a>--%>
-                        <%--<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=-1" style="text-decoration-line: none">审核不通过</a>--%>
+                       <%--<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=1" style="text-decoration: none"> 审核通过&nbsp</a>--%>
+                        <%--<a href="${pageContext.request.contextPath }/biz/receiveAudit?fileId=${fileDto.id}&res=-1" style="text-decoration: none">审核不通过</a>--%>
                     <%--</c:if>--%>
                     ${fileDto.borrowedName}
 

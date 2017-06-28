@@ -54,16 +54,16 @@
                 </td>
                 <td align="center">
                     <c:if test="${fileDto.location==null }">	<!-- 判断附件是否上传 -->
-                    	<a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id}" style="text-decoration-line: none">上传附件</a>
+                    	<a href="${pageContext.request.contextPath }/fileMng/upload?fileId=${fileDto.id}" style="text-decoration: none">上传附件</a>
                     </c:if>
                     <c:if test="${fileDto.location!=null }">
                     	附件已经上传<br>${fileDto.location }
                     </c:if>
                 </td>
                 <td align="center">
-                        <a href="${pageContext.request.contextPath }/fileMng/detail?fileId=${fileDto.id}" style="text-decoration-line: none">查看&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/fileMng/edit?fileId=${fileDto.id}" style="text-decoration-line: none">修改&nbsp</a>
-                        <a href="${pageContext.request.contextPath }/fileMng/delete?fileId=${fileDto.id}" style="text-decoration-line: none">删除</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/detail?fileId=${fileDto.id}" style="text-decoration: none">查看&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/edit?fileId=${fileDto.id}" style="text-decoration: none">修改&nbsp</a>
+                        <a href="${pageContext.request.contextPath }/fileMng/delete?fileId=${fileDto.id}" style="text-decoration: none">删除</a>
                 </td>
             </tr>
         </c:forEach>
