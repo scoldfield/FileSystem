@@ -81,13 +81,19 @@ public class DtoUtils {
         udr.setIsFileManager(Boolean.TRUE);
         userDeptRoles = userDeptRoleService.findSelective(udr);
         if(userDeptRoles.size() > 0) {
-            //若找到，那么只有一个
-            UserDeptRole userDeptRole = userDeptRoles.get(0);
-            
-            Long userId = userDeptRole.getUserId();
-            User user = userService.selectByPrimaryKey(userId);
-            deptDto.setFileManager(user.getName());
-            deptDto.setFileManagerId(userId + "");
+            //若找到，可能有多个
+//            UserDeptRole userDeptRole = userDeptRoles.get(0);
+            StringBuilder fileManagerName = new StringBuilder();
+            for(UserDeptRole userDeptRole : userDeptRoles){
+                Long userId = userDeptRole.getUserId();
+                User user = userService.selectByPrimaryKey(userId);
+                fileManagerName.append(user.getName() + ", ");
+            }
+            String fileManagerNameStr = fileManagerName.toString();
+            String fileMngName = fileManagerNameStr.substring(0, fileManagerNameStr.length() - 2);
+
+            deptDto.setFileManager(fileMngName);
+
         }
         
         return deptDto;

@@ -46,12 +46,13 @@
                 </select>
             </td>
             <td>
-                <select name="fileManagerId">
-                    <%-- <option value="${deptDto.fileManagerId }" selected="selected">${deptDto.fileManager } --%>
-                    <c:forEach items="${canBeFileMngers }" var="fileMnger">
-                        <option value="${fileMnger.id }" <c:if test="${fileMnger.id==deptDto.fileManagerId }">selected="selected"</c:if>>${fileMnger.name }</option>
-                    </c:forEach>
-                </select>
+                <%--<select name="fileManagerId">--%>
+                    <%--&lt;%&ndash; <option value="${deptDto.fileManagerId }" selected="selected">${deptDto.fileManager } &ndash;%&gt;--%>
+                    <%--<c:forEach items="${canBeFileMngers }" var="fileMnger">--%>
+                        <%--<option value="${fileMnger.id }" <c:if test="${fileMnger.id==deptDto.fileManagerId }">selected="selected"</c:if>>${fileMnger.name }</option>--%>
+                    <%--</c:forEach>--%>
+                <%--</select>--%>
+                ${deptDto.fileManager }
             </td>
             <td>
                 <input name="personNum" value="${deptDto.personNum }">

@@ -22,4 +22,8 @@ public interface IUserDeptRoleService {
     List<UserDeptRole> findAll();
     
     List<UserDeptRole> findSelective(UserDeptRole userDeptRole);
+
+    List<UserDeptRole> findByDeptIdAndIdDeptManager(Integer deptId, Boolean isDeptManager);
+
+    List<UserDeptRole> findByDeptIdAndIsFileManager(Integer deptId, Boolean isFileManager);
 }

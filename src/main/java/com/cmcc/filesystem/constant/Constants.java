@@ -83,7 +83,7 @@ public class Constants {
     public static final String RECEIVE_AUDIT_RESULT0 = "0";		//0:审核不通过
 	
     //上传的档案的存储地址
-    public static final String FILE_PATH = "Q:\\upload";
+    public static final String FILE_PATH = "d:\\upload";
     
     //menu和button
     public static final String MENU = "menu";

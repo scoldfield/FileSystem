@@ -206,16 +206,34 @@ public class DeptMngController {
 		/*
 		 * 每个人无论是领导、档案管理员还是普通用户，都会在sys_user_dept_role表中有一条且唯一一条记录
 		 */
+		//修改原来的部门管理员
+		List<UserDeptRole> userDeptRoleList = userDeptRoleService.findByDeptIdAndIdDeptManager(dept.getId().intValue(), true);
+		if(userDeptRoleList.size() > 0){
+			for(UserDeptRole udr : userDeptRoleList){
+				udr.setIsDeptManager(false);
+				userDeptRoleService.updateByPrimaryKey(udr);
+			}
+		}
+		//修改部门管理员
 		UserDeptRole toBeDeptManager = userDeptRoleService.findByUserId(deptManagerId);
 		toBeDeptManager.setDeptId(dept.getId());
 		toBeDeptManager.setIsDeptManager(Boolean.TRUE);
 		userDeptRoleService.updateByPrimaryKeySelective(toBeDeptManager);
-		
+
+		//修改部门原来方案管理员
+		List<UserDeptRole> userDeptRoleList1 = userDeptRoleService.findByDeptIdAndIdDeptManager(dept.getId().intValue(), true);
+		if(userDeptRoleList1.size() > 0){
+			for(UserDeptRole udr : userDeptRoleList1){
+				udr.setIsFileManager(false);
+				userDeptRoleService.updateByPrimaryKey(udr);
+			}
+		}
+		//修改部门档案管理员
 		UserDeptRole toBeFileManager = userDeptRoleService.findByUserId(fileManagerId);
 		toBeFileManager.setDeptId(dept.getId());
 		toBeFileManager.setIsFileManager(Boolean.TRUE);
 		userDeptRoleService.updateByPrimaryKey(toBeFileManager);
-		
+
 		/*
 		UserDeptRole udr = new UserDeptRole();
 		udr.setDeptId(dept.getId());

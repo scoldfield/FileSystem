@@ -3,6 +3,7 @@ package com.cmcc.filesystem.dao;
 import java.util.List;
 
 import com.cmcc.filesystem.entity.UserDeptRole;
+import org.apache.ibatis.annotations.Param;
 
 public interface UserDeptRoleMapper {
     int deleteByPrimaryKey(Long id);
@@ -22,4 +23,8 @@ public interface UserDeptRoleMapper {
     List<UserDeptRole> findAll();
 
     List<UserDeptRole> findSelective(UserDeptRole userDeptRole);
+
+    List<UserDeptRole> findByDeptIdAndIdDeptManager(@Param("deptId") Integer deptId, @Param("isDeptManager") Boolean isDeptManager);
+
+    List<UserDeptRole> findByDeptIdAndIsFileManager(@Param("deptId") Integer deptId, @Param("isDeptManager") Boolean isFileManager);
 }

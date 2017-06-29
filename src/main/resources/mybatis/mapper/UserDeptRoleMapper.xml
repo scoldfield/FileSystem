@@ -170,4 +170,20 @@
     </set>
     where user_id = #{userId,jdbcType=BIGINT}
   </update>
+  <select id="findByDeptIdAndIdDeptManager" resultMap="BaseResultMap">
+    select *
+    FROM sys_user_dept_role
+    WHERE
+    dept_id = #{deptId, jdbcType = BIGINT}
+    AND
+    is_dept_manager = #{isDeptManager, jdbcType = BIT}
+  </select>
+  <select id="findByDeptIdAndIsFileManager" resultMap="BaseResultMap">
+    select *
+    FROM sys_user_dept_role
+    WHERE
+    dept_id = #{deptId, jdbcType = BIGINT}
+    AND
+    is_dept_manager = #{isFileManager, jdbcType = BIT}
+  </select>
 </mapper>

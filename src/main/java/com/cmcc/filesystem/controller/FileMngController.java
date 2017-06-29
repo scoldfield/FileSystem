@@ -384,13 +384,13 @@ public class FileMngController {
 //	}
 	
 	@RequestMapping(value = "/uploadPost", method = RequestMethod.POST)
-	public String uploadPost(@RequestParam(value="file1", required=false) MultipartFile file1, String fileId, HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String uploadPost(@RequestParam(value="file1", required=false) MultipartFile file1, String fileId, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
 		
 		//上传档案的存储地址
 		String path = Constants.FILE_PATH;
 		System.out.println("开始上传......");  
         String fileName = file1.getOriginalFilename();
-        System.out.println("path = " + path);  
+		System.out.println("path = " + path);
         java.io.File targetFile = new java.io.File(path, fileName);  
         if(!targetFile.exists()){  
             targetFile.mkdirs();  

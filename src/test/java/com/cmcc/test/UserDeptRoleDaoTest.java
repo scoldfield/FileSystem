@@ -2,6 +2,7 @@ package com.cmcc.test;
 
 import java.util.List;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,22 @@ public class UserDeptRoleDaoTest {
 	    udr.setIsFileManager(Boolean.TRUE);
 	    int num = userDeptRoleMapper.insertSelective(udr);
 	    System.out.println("num = " + num);
+	}
+
+	@Test
+	public void test_findByDeptIdAndIdDeptManager(){
+		Integer deptId = 1;
+		Boolean isDeptManager = true;
+		List<UserDeptRole> userDeptRoleList = userDeptRoleMapper.findByDeptIdAndIdDeptManager(deptId, isDeptManager);
+		System.out.println("userDeptRoleList.size = " + userDeptRoleList);
+	}
+
+	@Test
+	public void test_findByDeptIdAndIsFileManager(){
+		Integer deptId = 1;
+		Boolean isFileManager = true;
+		List<UserDeptRole> userDeptRoleList = userDeptRoleMapper.findByDeptIdAndIdDeptManager(deptId, isFileManager);
+		System.out.println("userDeptRoleList.size = " + userDeptRoleList);
 	}
 
 	

@@ -59,4 +59,20 @@ public class UserDeptRoleServiceImpl implements IUserDeptRoleService {
         return userDeptRoleMapper.findSelective(userDeptRole);
     }
 
+	/**
+	 * 根据deptId和是否是部门管理员两个字段筛选
+	 * @param isDeptManager
+	 * @return
+	 */
+	public List<UserDeptRole> findByDeptIdAndIdDeptManager(Integer deptId, Boolean isDeptManager){
+		return userDeptRoleMapper.findByDeptIdAndIdDeptManager(deptId, isDeptManager);
+	}
+	/**
+	 * 根据deptId和是否是部门档案管理员两个字段筛选
+	 * @param isFileManager
+	 * @return
+	 */
+	public List<UserDeptRole> findByDeptIdAndIsFileManager(Integer deptId, Boolean isFileManager){
+		return userDeptRoleMapper.findByDeptIdAndIsFileManager(deptId, isFileManager);
+	}
 }
